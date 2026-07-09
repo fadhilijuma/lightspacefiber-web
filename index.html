@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lightspace — Unlimited fibre & wireless internet across Kenya</title>
+<meta name="description" content="Truly unlimited home and business internet across Kenya — fibre to your door or wireless to your rooftop. No FUP, no fine print. From KES 999/month.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0A1214; --night2:#0E181B; --teal:#0F7B7A; --teal-lt:#5CB8B2;
+  --amber:#FFB224; --paper:#FBFAF7; --ink:#101B1F; --tint:#68ABA9;
+  --line:#E3E0D7; --muted:#5B6A6D;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px}
+h1,h2,h3,.sg{font-family:'Space Grotesk',sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.eyebrow{font-family:'Space Grotesk';font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);font-weight:500}
+.btn{display:inline-block;background:var(--teal);color:#fff;padding:13px 26px;border-radius:10px;font-weight:600;font-size:15px;border:none;cursor:pointer;transition:background .2s}
+.btn:hover{background:#0C6564}
+.btn.ghost{background:transparent;border:1.5px solid var(--teal-lt);color:var(--teal-lt)}
+.btn.ghost:hover{background:rgba(92,184,178,.12)}
+:focus-visible{outline:2.5px solid var(--teal-lt);outline-offset:2px}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:50;background:rgba(10,18,20,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(92,184,178,.15)}
+.navin{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo svg{display:block}
+.navlinks{display:flex;gap:26px;align-items:center}
+.navlinks a{color:#B9C7C5;font-size:14.5px;font-weight:500}
+.navlinks a:hover{color:#fff}
+.navlinks .btn{padding:9px 18px;font-size:14px}
+.burger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.burger span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;border-radius:2px}
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(180deg,#070E10 0%, #0A1214 55%, #0F2A2E 88%, #14444478 100%),var(--night);color:#fff;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:2;padding-top:84px;padding-bottom:210px}
+.hero h1{font-size:clamp(38px,6vw,64px);line-height:1.05;font-weight:600;max-width:640px;letter-spacing:-0.01em}
+.hero h1 em{font-style:normal;color:var(--teal-lt)}
+.hero p.lead{margin:22px 0 34px;font-size:18px;color:#AFC2C0;max-width:480px}
+.skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:190px;z-index:1}
+.win{opacity:0;transition:opacity .6s ease}
+.win.on{opacity:1}
+.hero .horizon{position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--teal);z-index:2}
+@media (prefers-reduced-motion: reduce){.win{opacity:1;transition:none}}
+
+/* ---------- trust strip ---------- */
+.trust{background:var(--night2);color:#8FA6A3;border-top:1px solid rgba(92,184,178,.12)}
+.trust .wrap{display:flex;gap:8px 34px;flex-wrap:wrap;justify-content:center;padding:16px 22px;font-size:13.5px;font-weight:500}
+.trust b{color:var(--teal-lt);font-weight:600}
+
+/* ---------- sections ---------- */
+section{padding:84px 0}
+.sechead{max-width:600px;margin-bottom:44px}
+.sechead h2{font-size:clamp(28px,4vw,38px);font-weight:600;line-height:1.15;margin:10px 0 12px}
+.sechead p{color:var(--muted)}
+
+/* ---------- plans ---------- */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:18px}
+.plan{border:1.5px solid var(--line);border-radius:18px;padding:26px 24px;background:#fff;position:relative;display:flex;flex-direction:column;transition:transform .2s, box-shadow .2s}
+.plan:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(16,27,31,.10)}
+.plan.pop{border-color:var(--teal);border-width:2px}
+.badge{position:absolute;top:-12px;left:24px;background:var(--teal);color:#fff;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:4px 12px;border-radius:20px;font-family:'Space Grotesk'}
+.plan .pname{font-family:'Space Grotesk';font-weight:600;font-size:17px;display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.plan .pname i{width:8px;height:8px;border-radius:5px;background:var(--amber);display:inline-block}
+.speed{font-family:'Space Grotesk';font-size:44px;font-weight:600;line-height:1}
+.speed small{font-size:15px;font-weight:500;color:var(--muted)}
+.price{margin:14px 0 4px;font-family:'Space Grotesk';font-size:22px;font-weight:600;color:var(--teal)}
+.price small{font-size:13px;color:var(--muted);font-weight:400;font-family:'Inter'}
+.plan ul{list-style:none;margin:16px 0 22px;flex:1}
+.plan li{font-size:14px;color:#3C4A4E;padding:5px 0 5px 22px;position:relative}
+.plan li:before{content:"";position:absolute;left:0;top:12px;width:12px;height:12px;border:1.5px solid var(--teal);border-radius:4px}
+.plan .btn{width:100%;text-align:center}
+.plannote{margin-top:22px;font-size:13.5px;color:var(--muted)}
+
+
+/* ---------- plan tabs + custom slider ---------- */
+.tabs{display:inline-flex;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:4px;margin-bottom:28px}
+.tabs button{border:none;background:transparent;padding:9px 22px;border-radius:9px;font-family:'Space Grotesk';font-weight:600;font-size:14.5px;color:var(--muted);cursor:pointer}
+.tabs button.on{background:var(--teal);color:#fff}
+.pgrid{display:none}
+.pgrid.on{display:grid}
+.custom{margin-top:26px;border:1.5px dashed var(--teal);border-radius:18px;padding:26px 26px;background:#fff;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.custom .cl{flex:1;min-width:260px}
+.custom h3{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin-bottom:4px}
+.custom p{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+.custom input[type=range]{width:100%;accent-color:var(--teal)}
+.custom .cr{text-align:center;min-width:200px}
+.custom .cspeed{font-family:'Space Grotesk';font-size:38px;font-weight:600;line-height:1}
+.custom .cspeed small{font-size:14px;color:var(--muted)}
+.custom .cprice{font-family:'Space Grotesk';font-size:19px;font-weight:600;color:var(--teal);margin:6px 0 14px}
+/* ---------- honest ---------- */
+.honest{background:var(--night);color:#fff}
+.honest .eyebrow{color:var(--teal-lt)}
+.honest .sechead p{color:#8FA6A3}
+.fine{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(92,184,178,.25);border-radius:18px;overflow:hidden;max-width:860px}
+.fine>div{padding:30px 32px}
+.fine .them{background:rgba(255,255,255,.03);border-right:1px solid rgba(92,184,178,.25)}
+.fine h3{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#7E9391;font-weight:500;margin-bottom:18px}
+.fine .us h3{color:var(--teal-lt)}
+.fine dl{display:grid;grid-template-columns:1fr auto;gap:10px 16px;font-size:14.5px}
+.fine dt{color:#AFC2C0}
+.fine dd{font-family:'Space Grotesk';font-weight:500;text-align:right;color:#E8D9B8}
+.fine .us dd{color:var(--teal-lt)}
+.fine .us dd.free{color:#fff}
+@media(max-width:700px){.fine{grid-template-columns:1fr}.fine .them{border-right:none;border-bottom:1px solid rgba(92,184,178,.25)}}
+
+/* ---------- how ---------- */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.step{border:1.5px solid var(--line);border-radius:18px;padding:28px 26px;background:#fff}
+.step .k{font-family:'Space Grotesk';font-size:13px;letter-spacing:.16em;color:var(--teal);text-transform:uppercase;font-weight:600}
+.step h3{font-size:19px;margin:10px 0 8px;font-weight:600}
+.step p{font-size:14.5px;color:var(--muted)}
+
+/* ---------- coverage ---------- */
+.areas{display:flex;flex-wrap:wrap;gap:10px;max-width:760px}
+.area{border:1.5px solid var(--line);background:#fff;border-radius:24px;padding:9px 18px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px}
+.area i{width:7px;height:7px;border-radius:4px;background:var(--amber)}
+.area.soon{color:var(--muted)}
+.area.soon i{background:var(--line)}
+.covnote{margin-top:20px;font-size:14.5px;color:var(--muted)}
+.covnote a{color:var(--teal);font-weight:600}
+
+/* ---------- business ---------- */
+.biz{background:var(--night);color:#fff}
+.biz .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.biz .eyebrow{color:var(--teal-lt)}
+.biz h2{font-size:clamp(26px,3.5vw,34px);margin:10px 0 14px;font-weight:600}
+.biz p{color:#AFC2C0;font-size:15.5px;margin-bottom:26px}
+.biz ul{list-style:none;margin-bottom:30px}
+.biz li{padding:7px 0 7px 26px;position:relative;color:#CFE0DE;font-size:15px}
+.biz li:before{content:"";position:absolute;left:0;top:14px;width:13px;height:13px;border:1.5px solid var(--teal-lt);border-radius:4px}
+.bizart{border:1.5px solid rgba(92,184,178,.3);border-radius:22px;padding:34px;text-align:center}
+.bizart .big{font-family:'Space Grotesk';font-size:56px;font-weight:600;color:var(--teal-lt)}
+.bizart .lbl{font-size:13px;color:#7E9391;letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
+.bizart hr{border:none;border-top:1px solid rgba(92,184,178,.2);margin:24px 0}
+@media(max-width:820px){.biz .wrap{grid-template-columns:1fr}}
+
+/* ---------- faq ---------- */
+.faq{max-width:760px}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{cursor:pointer;font-family:'Space Grotesk';font-weight:500;font-size:17px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";font-size:22px;color:var(--teal);flex-shrink:0}
+details[open] summary:after{content:"–"}
+details p{margin-top:12px;color:var(--muted);font-size:15px;max-width:640px}
+
+/* ---------- footer ---------- */
+footer{background:var(--night);color:#8FA6A3;padding:56px 0 40px;font-size:14px}
+footer .top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:36px}
+footer .col h4{color:#fff;font-family:'Space Grotesk';font-size:14px;font-weight:600;margin-bottom:12px}
+footer .col a{display:block;padding:4px 0}
+footer .col a:hover{color:#fff}
+footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-size:12.5px;color:#5F7472;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+@media(max-width:760px){
+  .navlinks{display:none;position:absolute;top:66px;left:0;right:0;background:var(--night);flex-direction:column;padding:18px 22px;gap:16px;border-bottom:1px solid rgba(92,184,178,.2)}
+  .navlinks.open{display:flex}
+  .burger{display:block}
+  .hero .wrap{padding-top:56px;padding-bottom:180px}
+  section{padding:60px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap navin">
+    <a class="logo" href="#" aria-label="Lightspace home">
+      <!-- framed mark: fill dissolves on dark, frame + light remain -->
+      <svg width="40" height="40" viewBox="0 0 100 100" aria-hidden="true">
+        <rect x="6" y="6" width="88" height="88" rx="24" fill="none" stroke="#5CB8B2" stroke-width="5"/>
+        <circle cx="59" cy="41" r="8" fill="#FFB224"/>
+      </svg>
+      <svg width="127" height="30" viewBox="0 -24 127 30" aria-label="lightspace"><path d="M1.824 0.0V-16.8H4.296V0.0Z M7.872 0.0V-11.832H10.344000000000001V0.0Z M13.344 -5.856V-6.216Q13.344 -8.088000000000001 14.1 -9.408000000000001Q14.856 -10.728 16.104 -11.448Q17.352 -12.168000000000001 18.84 -12.168000000000001Q20.567999999999998 -12.168000000000001 21.491999999999997 -11.52Q22.416 -10.872 22.848 -10.128H23.232V-11.832H25.631999999999998V2.424Q25.631999999999998 3.504 24.996 4.152Q24.36 4.8 23.256 4.8H15.288V2.64H22.488Q23.184 2.64 23.184 1.92V-1.848H22.8Q22.536 -1.416 22.056 -0.96Q21.576 -0.504 20.796 -0.216Q20.016 0.07200000000000001 18.84 0.07200000000000001Q17.352 0.07200000000000001 16.092 -0.636Q14.832 -1.344 14.088000000000001 -2.676Q13.344 -4.008 13.344 -5.856ZM19.512 -2.088Q21.12 -2.088 22.164 -3.108Q23.208 -4.128 23.208 -5.928V-6.144Q23.208 -7.992 22.176 -8.988Q21.144 -9.984 19.512 -9.984Q17.928 -9.984 16.884 -8.988Q15.84 -7.992 15.84 -6.144V-5.928Q15.84 -4.128 16.884 -3.108Q17.928 -2.088 19.512 -2.088Z M29.184 0.0V-16.8H31.656V-10.152000000000001H32.04Q32.28 -10.608 32.724000000000004 -11.04Q33.168 -11.472 33.9 -11.748000000000001Q34.632 -12.024000000000001 35.76 -12.024000000000001Q37.104 -12.024000000000001 38.147999999999996 -11.424Q39.192 -10.824 39.792 -9.732Q40.391999999999996 -8.64 40.391999999999996 -7.104V0.0H37.92V-6.912Q37.92 -8.448 37.152 -9.18Q36.384 -9.912 35.04 -9.912Q33.504 -9.912 32.58 -8.904Q31.656 -7.896 31.656 -5.976V0.0Z M48.288000000000004 0.0Q47.208 0.0 46.572 -0.648Q45.936 -1.296 45.936 -2.376V-9.744H42.672000000000004V-11.832H45.936V-15.744H48.408V-11.832H51.936V-9.744H48.408V-2.8080000000000003Q48.408 -2.088 49.08 -2.088H51.552V0.0Z M59.592 0.336Q57.336 0.336 55.848 -0.6719999999999999Q54.36 -1.68 54.024 -3.72L56.328 -4.272Q56.52 -3.2880000000000003 56.976 -2.712Q57.432 -2.136 58.116 -1.8960000000000001Q58.800000000000004 -1.6560000000000001 59.592 -1.6560000000000001Q60.768 -1.6560000000000001 61.404 -2.112Q62.040000000000006 -2.568 62.040000000000006 -3.2880000000000003Q62.040000000000006 -4.008 61.440000000000005 -4.343999999999999Q60.84 -4.68 59.664 -4.896L58.848 -5.04Q57.648 -5.256 56.664 -5.664Q55.68 -6.072 55.104 -6.792Q54.528 -7.5120000000000005 54.528 -8.64Q54.528 -10.32 55.775999999999996 -11.244Q57.024 -12.168000000000001 59.088 -12.168000000000001Q61.08 -12.168000000000001 62.364000000000004 -11.268Q63.648 -10.368 64.032 -8.832L61.728 -8.184000000000001Q61.512 -9.264 60.816 -9.708Q60.120000000000005 -10.152000000000001 59.088 -10.152000000000001Q58.08 -10.152000000000001 57.504000000000005 -9.780000000000001Q56.928000000000004 -9.408 56.928000000000004 -8.736Q56.928000000000004 -8.016 57.492000000000004 -7.68Q58.056000000000004 -7.344 59.016000000000005 -7.176L59.856 -7.032Q61.128 -6.816 62.184 -6.432Q63.24 -6.048 63.852000000000004 -5.328Q64.464 -4.6080000000000005 64.464 -3.408Q64.464 -1.6320000000000001 63.144 -0.648Q61.824 0.336 59.592 0.336Z M67.248 4.8V-11.832H69.67200000000001V-10.128H70.05600000000001Q70.512 -10.92 71.436 -11.544Q72.36000000000001 -12.168000000000001 74.08800000000001 -12.168000000000001Q75.57600000000001 -12.168000000000001 76.81200000000001 -11.448Q78.048 -10.728 78.804 -9.372Q79.56 -8.016 79.56 -6.096V-5.736Q79.56 -3.8160000000000003 78.816 -2.46Q78.072 -1.104 76.82400000000001 -0.384Q75.57600000000001 0.336 74.08800000000001 0.336Q72.936 0.336 72.144 0.048000000000000015Q71.352 -0.24 70.87200000000001 -0.684Q70.39200000000001 -1.1280000000000001 70.10400000000001 -1.608H69.72000000000001V4.8ZM73.36800000000001 -1.824Q75.0 -1.824 76.03200000000001 -2.856Q77.06400000000001 -3.888 77.06400000000001 -5.808V-6.024Q77.06400000000001 -7.92 76.02000000000001 -8.952Q74.976 -9.984 73.36800000000001 -9.984Q71.784 -9.984 70.74000000000001 -8.952Q69.69600000000001 -7.92 69.69600000000001 -6.024V-5.808Q69.69600000000001 -3.888 70.74000000000001 -2.856Q71.784 -1.824 73.36800000000001 -1.824Z M86.208 0.336Q84.936 0.336 83.94 -0.096Q82.944 -0.528 82.356 -1.368Q81.768 -2.208 81.768 -3.408Q81.768 -4.632 82.356 -5.436Q82.944 -6.24 83.964 -6.648Q84.98400000000001 -7.056 86.28 -7.056H89.88000000000001V-7.824Q89.88000000000001 -8.856 89.256 -9.48Q88.632 -10.104000000000001 87.336 -10.104000000000001Q86.06400000000001 -10.104000000000001 85.392 -9.504000000000001Q84.72 -8.904 84.504 -7.944L82.2 -8.688Q82.488 -9.648 83.124 -10.428Q83.76 -11.208 84.816 -11.688Q85.872 -12.168000000000001 87.36 -12.168000000000001Q89.664 -12.168000000000001 90.98400000000001 -10.992Q92.304 -9.816 92.304 -7.656000000000001V-2.7840000000000003Q92.304 -2.064 92.976 -2.064H93.98400000000001V0.0H92.136Q91.296 0.0 90.768 -0.432Q90.24000000000001 -0.864 90.24000000000001 -1.608V-1.68H89.88000000000001Q89.688 -1.32 89.304 -0.8400000000000001Q88.92 -0.36 88.176 -0.011999999999999983Q87.432 0.336 86.208 0.336ZM86.568 -1.704Q88.056 -1.704 88.968 -2.556Q89.88000000000001 -3.408 89.88000000000001 -4.896V-5.136H86.424Q85.44 -5.136 84.84 -4.716Q84.24000000000001 -4.296 84.24000000000001 -3.48Q84.24000000000001 -2.664 84.864 -2.184Q85.488 -1.704 86.568 -1.704Z M101.78399999999999 0.336Q100.08 0.336 98.69999999999999 -0.384Q97.32 -1.104 96.51599999999999 -2.472Q95.712 -3.84 95.712 -5.76V-6.072Q95.712 -7.992 96.51599999999999 -9.348Q97.32 -10.704 98.69999999999999 -11.436Q100.08 -12.168000000000001 101.78399999999999 -12.168000000000001Q103.488 -12.168000000000001 104.688 -11.544Q105.888 -10.92 106.62 -9.888Q107.352 -8.856 107.568 -7.6080000000000005L105.168 -7.104Q105.048 -7.896 104.664 -8.544Q104.28 -9.192 103.584 -9.576Q102.888 -9.96 101.832 -9.96Q100.8 -9.96 99.97200000000001 -9.492Q99.144 -9.024000000000001 98.664 -8.148Q98.184 -7.272 98.184 -6.024V-5.808Q98.184 -4.5600000000000005 98.664 -3.6720000000000006Q99.144 -2.7840000000000003 99.97200000000001 -2.3280000000000003Q100.8 -1.872 101.832 -1.872Q103.392 -1.872 104.208 -2.676Q105.024 -3.48 105.24 -4.728L107.64 -4.176Q107.352 -2.952 106.62 -1.92Q105.888 -0.888 104.688 -0.276Q103.488 0.336 101.78399999999999 0.336Z M115.824 0.336Q114.024 0.336 112.68 -0.41999999999999993Q111.336 -1.176 110.58 -2.556Q109.824 -3.936 109.824 -5.76V-6.048Q109.824 -7.896 110.568 -9.276Q111.312 -10.656 112.644 -11.412Q113.976 -12.168000000000001 115.728 -12.168000000000001Q117.43199999999999 -12.168000000000001 118.716 -11.412Q120.0 -10.656 120.72 -9.312000000000001Q121.44 -7.968 121.44 -6.168V-5.232H112.344Q112.392 -3.672 113.38799999999999 -2.748Q114.38399999999999 -1.824 115.872 -1.824Q117.264 -1.824 117.972 -2.448Q118.67999999999999 -3.072 119.064 -3.888L121.104 -2.832Q120.768 -2.16 120.132 -1.4160000000000001Q119.496 -0.672 118.464 -0.168Q117.43199999999999 0.336 115.824 0.336ZM112.368 -7.128H118.91999999999999Q118.824 -8.472 117.96 -9.228Q117.09599999999999 -9.984 115.704 -9.984Q114.312 -9.984 113.43599999999999 -9.228Q112.55999999999999 -8.472 112.368 -7.128Z" fill="#FFFFFF"/><circle cx="9.1" cy="-15.4" r="1.6" fill="#FFFFFF"/></svg>
+    </a>
+    <button class="burger" aria-label="Menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navlinks">
+      <a href="#plans">Plans</a>
+      <a href="#business">Business</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn" href="#plans">Get connected</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#5CB8B2">Unlimited internet · Fibre &amp; wireless</div>
+    <h1>The night your home <em>comes online.</em></h1>
+    <p class="lead">Truly unlimited internet for your home or business. No fair-usage fine print, no surprises. Installed fast, countrywide.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn" href="#plans">See plans</a>
+      <a class="btn ghost" style="border-color:rgba(92,184,178,.5);color:#5CB8B2" href="https://wa.me/254700000000?text=Habari!%20I%27d%20like%20to%20get%20connected.">WhatsApp us</a>
+    </div>
+  </div>
+  <svg class="skyline" id="skyline" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+  <div class="horizon"></div>
+</header>
+
+<div class="trust">
+  <div class="wrap">
+    <span><b>No FUP</b> — unlimited means unlimited</span>
+    <span><b>M-Pesa</b> paybill billing</span>
+    <span><b>24-hour</b> installation</span>
+    <span><b>Fibre &amp; wireless</b> — we install what fits your location</span>
+  </div>
+</div>
+
+<section id="plans">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="eyebrow">Plans</div>
+      <h2>One price. The whole month. All of it.</h2>
+      <p>Every plan is truly unlimited — no fair-usage policy, no speed cuts after a cap, no surprises on the 20th of the month.</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="on" id="tab-home" onclick="planTab('home')">Home</button>
+      <button id="tab-biz" onclick="planTab('biz')">Business</button>
+    </div>
+    <div class="plans pgrid on" id="grid-home"><div class="plan">
+        
+        <div class="pname"><i></i>Cheche</div>
+        <div class="speed">50<small> Mbps</small></div>
+        <div class="price">KES 999<small> /month</small></div>
+        <ul><li>Streaming and browsing for the home</li><li>Unlimited data, no FUP</li><li>Free standard installation</li></ul>
+        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Cheche%2050%20Mbps%20home%20plan.">Get Cheche</a>
+      </div><div class="plan pop">
+        <div class="badge">Most popular</div>
+        <div class="pname"><i></i>Mwenge</div>
+        <div class="speed">150<small> Mbps</small></div>
+        <div class="price">KES 1,899<small> /month</small></div>
+        <ul><li>4K streaming on several devices</li><li>Work-from-home ready</li><li>Unlimited data, no FUP</li><li>Free standard installation</li></ul>
+        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Mwenge%20150%20Mbps%20home%20plan.">Get Mwenge</a>
+      </div><div class="plan">
+        
+        <div class="pname"><i></i>Jua</div>
+        <div class="speed">300<small> Mbps</small></div>
+        <div class="price">KES 3,999<small> /month</small></div>
+        <ul><li>Gaming, creators and heavy households</li><li>Priority support line</li><li>Unlimited data, no FUP</li></ul>
+        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Jua%20300%20Mbps%20home%20plan.">Get Jua</a>
+      </div><div class="plan">
+        
+        <div class="pname"><i></i>Radi</div>
+        <div class="speed">1<small> Gbps</small></div>
+        <div class="price">KES 8,999<small> /month</small></div>
+        <ul><li>Everything, all at once, for everyone</li><li>Priority support line</li><li>Unlimited data, no FUP</li></ul>
+        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Radi%201%20Gbps%20home%20plan.">Get Radi</a>
+      </div></div>
+    <div class="plans pgrid" id="grid-biz"><div class="plan">
+        
+        <div class="pname"><i></i>Cheche Biz</div>
+        <div class="speed">50<small> Mbps</small></div>
+        <div class="price">KES 2,999<small> /month</small></div>
+        <ul><li>Small offices and shops</li><li>Static IP included</li><li>Business-hours SLA</li><li>Unlimited data, no FUP</li></ul>
+        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Cheche%20Biz%2050%20Mbps%20plan.">Get Cheche Biz</a>
+      </div><div class="plan pop">
+        <div class="badge">Most popular</div>
+        <div class="pname"><i></i>Mwenge Biz</div>
+        <div class="speed">150<small> Mbps</small></div>
+        <div class="price">KES 4,499<small> /month</small></div>
+        <ul><li>Growing teams and multiple outlets</li><li>Static IP included</li><li>99.9% uptime SLA</li><li>Priority business support</li></ul>
+        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Mwenge%20Biz%20150%20Mbps%20plan.">Get Mwenge Biz</a>
+      </div><div class="plan">
+        
+        <div class="pname"><i></i>Jua Biz</div>
+        <div class="speed">300<small> Mbps</small></div>
+        <div class="price">KES 6,999<small> /month</small></div>
+        <ul><li>Offices, schools, SACCOs, hotels</li><li>Static IP + VLANs</li><li>99.9% uptime SLA</li><li>Same-day on-site response</li></ul>
+        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Jua%20Biz%20300%20Mbps%20plan.">Get Jua Biz</a>
+      </div><div class="plan">
+        
+        <div class="pname"><i></i>Radi Biz</div>
+        <div class="speed">1<small> Gbps</small></div>
+        <div class="price">KES 14,999<small> /month</small></div>
+        <ul><li>Bandwidth-heavy operations</li><li>Static IPs + VLANs</li><li>99.9% uptime SLA</li><li>Dedicated account engineer</li></ul>
+        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Radi%20Biz%201%20Gbps%20plan.">Talk to us</a>
+      </div></div>
+
+    <div class="custom">
+      <div class="cl">
+        <h3>Or build your own speed.</h3>
+        <p>Need exactly 200 Mbps? 400? Slide to the bandwidth you want — home or business — and we'll set it up.</p>
+        <input type="range" id="bw" min="50" max="1000" step="10" value="200" oninput="bwCalc()" aria-label="Choose your bandwidth in Mbps">
+      </div>
+      <div class="cr">
+        <div class="cspeed"><span id="bwv">200</span><small> Mbps</small></div>
+        <div class="cprice">KES <span id="bwp">—</span> /month</div>
+        <a class="btn" id="bwcta" href="#">Request this speed</a>
+      </div>
+    </div>
+    <p class="plannote">Pay via M-Pesa paybill. Standard installation is free on all home plans during launch — fibre drop or rooftop radio, plus the indoor Wi-Fi router, included.</p>
+  </div>
+</section>
+
+<section class="honest">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="eyebrow">The fine print, printed large</div>
+      <h2>"Unlimited" should not need an asterisk.</h2>
+      <p>Most providers advertise unlimited internet, then slow you down after a hidden usage cap. We put our terms in lights instead of footnotes.</p>
+    </div>
+    <div class="fine">
+      <div class="them">
+        <h3>Typical fibre fine print</h3>
+        <dl>
+          <dt>Fair-usage cap</dt><dd>yes, hidden</dd>
+          <dt>Speed after the cap</dt><dd>as low as 25%</dd>
+          <dt>Peak-hour contention</dt><dd>up to 1:4</dd>
+          <dt>Unused data carried over</dt><dd>no</dd>
+        </dl>
+      </div>
+      <div class="us">
+        <h3>Lightspace terms</h3>
+        <dl>
+          <dt>Fair-usage cap</dt><dd class="free">none</dd>
+          <dt>Speed after the cap</dt><dd class="free">there is no cap</dd>
+          <dt>Your speed, all month</dt><dd>the speed you paid for</dd>
+          <dt>Fine print</dt><dd class="free">you just read all of it</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="eyebrow">Getting connected</div>
+      <h2>From "hello" to online in a day.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="k">Check</div>
+        <h3>Tell us your location</h3>
+        <p>WhatsApp us your location. We confirm the same day whether fibre or a wireless link serves your address best.</p>
+      </div>
+      <div class="step">
+        <div class="k">Install</div>
+        <h3>We come to you</h3>
+        <p>Our team runs fibre to your wall — or mounts a small radio on your roof where fibre doesn't reach — and sets up Wi-Fi inside, usually within 24 hours.</p>
+      </div>
+      <div class="step">
+        <div class="k">Shine</div>
+        <h3>Pay by M-Pesa, stay online</h3>
+        <p>One paybill, one monthly amount, no contracts. Your home stays lit as long as you want it to be.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="biz" id="business">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Enterprise &amp; dedicated</div>
+      <h2>Dedicated capacity, engineered for you.</h2>
+      <p>Dedicated fibre and wireless capacity for offices, schools, SACCOs, hotels and cyber cafés — engineered on our own multihomed network with redundant upstream carriers.</p>
+      <ul>
+        <li>Dedicated symmetric links from 100 Mbps to 10 Gbps</li>
+        <li>Static IPs, VLANs and site-to-site links</li>
+        <li>Service-level agreement with response-time commitments</li>
+        <li>An engineer who answers — local, not a call centre</li>
+      </ul>
+      <a class="btn ghost" href="https://wa.me/254700000000?text=Habari!%20I%27d%20like%20a%20Biashara%20quote.">Request a quote</a>
+    </div>
+    <div class="bizart">
+      <div class="big">99.9%</div>
+      <div class="lbl">Uptime commitment</div>
+      <hr>
+      <div class="big">&lt; 4 hrs</div>
+      <div class="lbl">On-site response, business SLA</div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sechead">
+      <div class="eyebrow">Questions</div>
+      <h2>Asked often, answered plainly.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Is it really unlimited, or is there a hidden fair-usage policy?</summary>
+        <p>Really unlimited. There is no usage cap, no throttling threshold, and no speed reduction at any point in the month. If we ever introduce a limit on any plan, we will say so on this page in the same size text as the price.</p>
+      </details>
+      <details>
+        <summary>Do you offer fibre or wireless?</summary>
+        <p>Both. Where our fibre passes your street, we run a cable straight to your home or office. Where it doesn't yet, we beam the same unlimited service wirelessly from a nearby mast to a small rooftop radio — and both run on our own fibre backbone with multiple upstream carriers. You get the plan; we pick the best way to deliver it.</p>
+      </details>
+      <details>
+        <summary>What does installation involve?</summary>
+        <p>For fibre, we run a drop cable from the street to an indoor router. For wireless, a technician mounts a book-sized radio on your roof and cables it to your router. Either way we confirm your speeds before leaving — standard installation is free on home plans during launch.</p>
+      </details>
+      <details>
+        <summary>How do I pay?</summary>
+        <p>Via M-Pesa paybill, monthly in advance. No contracts and no penalties — if you stop paying, service pauses; when you pay again, your home lights back up.</p>
+      </details>
+      <details>
+        <summary>What speeds will I actually get?</summary>
+        <p>The speed on your plan is the speed we provision to your connection, fibre or wireless. Wi-Fi speeds inside your house depend on your router placement and walls; our technicians position the router for the best real-world coverage during installation.</p>
+      </details>
+      <details>
+        <summary>Are you available in my area?</summary>
+        <p>We're expanding countrywide, switching on new fibre routes and wireless sites every month. WhatsApp us your town or estate and we'll confirm availability the same day — and if we're not there yet, your request genuinely moves your area up the build plan.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div class="col" style="max-width:280px">
+        <svg width="142" height="34" viewBox="0 -27 142 34" aria-label="lightspace"><path d="M2.052 0.0V-18.9H4.833V0.0Z M8.856 0.0V-13.311H11.637V0.0Z M15.012 -6.588V-6.993Q15.012 -9.099 15.8625 -10.584Q16.713 -12.068999999999999 18.117 -12.879Q19.521 -13.689 21.195 -13.689Q23.139000000000003 -13.689 24.1785 -12.96Q25.218 -12.231 25.704 -11.394H26.136000000000003V-13.311H28.836V2.727Q28.836 3.942 28.1205 4.671Q27.405 5.4 26.163 5.4H17.199V2.9699999999999998H25.299Q26.082 2.9699999999999998 26.082 2.16V-2.079H25.65Q25.353 -1.593 24.813000000000002 -1.08Q24.273 -0.567 23.3955 -0.24299999999999997Q22.518 0.081 21.195 0.081Q19.521 0.081 18.1035 -0.7155Q16.686 -1.512 15.849 -3.0105000000000004Q15.012 -4.509 15.012 -6.588ZM21.951 -2.3489999999999998Q23.759999999999998 -2.3489999999999998 24.9345 -3.4965Q26.109 -4.644 26.109 -6.669V-6.912Q26.109 -8.991 24.948 -10.1115Q23.787 -11.232 21.951 -11.232Q20.169 -11.232 18.994500000000002 -10.1115Q17.82 -8.991 17.82 -6.912V-6.669Q17.82 -4.644 18.994500000000002 -3.4965Q20.169 -2.3489999999999998 21.951 -2.3489999999999998Z M32.832 0.0V-18.9H35.613V-11.421H36.045Q36.315 -11.934 36.814499999999995 -12.42Q37.314 -12.906 38.1375 -13.2165Q38.961 -13.527 40.230000000000004 -13.527Q41.742000000000004 -13.527 42.9165 -12.852Q44.091 -12.177 44.766000000000005 -10.9485Q45.441 -9.72 45.441 -7.992V0.0H42.66V-7.776Q42.66 -9.504 41.796 -10.3275Q40.932 -11.151 39.42 -11.151Q37.692 -11.151 36.6525 -10.017Q35.613 -8.883 35.613 -6.723V0.0Z M54.324 0.0Q53.109 0.0 52.3935 -0.729Q51.678 -1.458 51.678 -2.673V-10.962H48.006V-13.311H51.678V-17.712H54.459V-13.311H58.428V-10.962H54.459V-3.159Q54.459 -2.3489999999999998 55.215 -2.3489999999999998H57.996V0.0Z M67.041 0.378Q64.503 0.378 62.82899999999999 -0.756Q61.154999999999994 -1.89 60.776999999999994 -4.185L63.369 -4.806Q63.584999999999994 -3.699 64.09799999999998 -3.051Q64.61099999999999 -2.403 65.38049999999998 -2.133Q66.14999999999999 -1.863 67.041 -1.863Q68.364 -1.863 69.0795 -2.376Q69.795 -2.889 69.795 -3.699Q69.795 -4.509 69.12 -4.8870000000000005Q68.445 -5.265 67.122 -5.508L66.204 -5.67Q64.854 -5.913 63.747 -6.372Q62.63999999999999 -6.8309999999999995 61.99199999999999 -7.641Q61.343999999999994 -8.451 61.343999999999994 -9.72Q61.343999999999994 -11.61 62.748 -12.6495Q64.152 -13.689 66.47399999999999 -13.689Q68.715 -13.689 70.15950000000001 -12.6765Q71.604 -11.664 72.036 -9.936L69.444 -9.207Q69.201 -10.422 68.41799999999999 -10.9215Q67.63499999999999 -11.421 66.47399999999999 -11.421Q65.34 -11.421 64.69200000000001 -11.0025Q64.044 -10.584 64.044 -9.828Q64.044 -9.018 64.6785 -8.64Q65.313 -8.262 66.393 -8.073L67.338 -7.911Q68.76899999999999 -7.668 69.957 -7.236000000000001Q71.145 -6.804 71.83349999999999 -5.994Q72.52199999999999 -5.184 72.52199999999999 -3.834Q72.52199999999999 -1.836 71.03699999999999 -0.7290000000000001Q69.55199999999999 0.378 67.041 0.378Z M75.65400000000001 5.4V-13.311H78.381V-11.394H78.813Q79.32600000000001 -12.285 80.3655 -12.987Q81.405 -13.689 83.349 -13.689Q85.023 -13.689 86.4135 -12.879Q87.804 -12.068999999999999 88.65450000000001 -10.5435Q89.50500000000001 -9.018 89.50500000000001 -6.858V-6.453Q89.50500000000001 -4.293 88.668 -2.7675Q87.831 -1.242 86.42699999999999 -0.432Q85.023 0.378 83.349 0.378Q82.053 0.378 81.162 0.05399999999999999Q80.271 -0.27 79.731 -0.7695Q79.191 -1.269 78.867 -1.809H78.435V5.4ZM82.539 -2.052Q84.375 -2.052 85.536 -3.213Q86.697 -4.374 86.697 -6.534V-6.777Q86.697 -8.91 85.52250000000001 -10.071Q84.348 -11.232 82.539 -11.232Q80.757 -11.232 79.58250000000001 -10.071Q78.408 -8.91 78.408 -6.777V-6.534Q78.408 -4.374 79.58250000000001 -3.213Q80.757 -2.052 82.539 -2.052Z M96.98400000000001 0.378Q95.553 0.378 94.4325 -0.10799999999999998Q93.312 -0.594 92.6505 -1.539Q91.989 -2.484 91.989 -3.834Q91.989 -5.211 92.6505 -6.1155Q93.312 -7.02 94.45949999999999 -7.478999999999999Q95.607 -7.938 97.065 -7.938H101.11500000000001V-8.802Q101.11500000000001 -9.963 100.41300000000001 -10.665Q99.711 -11.366999999999999 98.253 -11.366999999999999Q96.822 -11.366999999999999 96.066 -10.692Q95.31 -10.017 95.06700000000001 -8.937L92.47500000000001 -9.774Q92.799 -10.854 93.5145 -11.7315Q94.23 -12.609 95.418 -13.149000000000001Q96.606 -13.689 98.28 -13.689Q100.872 -13.689 102.357 -12.366Q103.842 -11.043 103.842 -8.613V-3.132Q103.842 -2.322 104.598 -2.322H105.732V0.0H103.653Q102.708 0.0 102.114 -0.486Q101.52 -0.972 101.52 -1.809V-1.89H101.11500000000001Q100.899 -1.4849999999999999 100.467 -0.945Q100.035 -0.40499999999999997 99.19800000000001 -0.013499999999999984Q98.361 0.378 96.98400000000001 0.378ZM97.389 -1.917Q99.063 -1.917 100.089 -2.8755Q101.11500000000001 -3.834 101.11500000000001 -5.508V-5.778H97.227Q96.12 -5.778 95.445 -5.3055Q94.77 -4.833 94.77 -3.915Q94.77 -2.997 95.47200000000001 -2.457Q96.174 -1.917 97.389 -1.917Z M114.507 0.378Q112.59 0.378 111.0375 -0.432Q109.485 -1.242 108.5805 -2.781Q107.676 -4.32 107.676 -6.4799999999999995V-6.8309999999999995Q107.676 -8.991 108.5805 -10.5165Q109.485 -12.042 111.0375 -12.8655Q112.59 -13.689 114.507 -13.689Q116.424 -13.689 117.774 -12.987Q119.12400000000001 -12.285 119.9475 -11.123999999999999Q120.771 -9.963 121.01400000000001 -8.559L118.31400000000001 -7.992Q118.179 -8.883 117.747 -9.611999999999998Q117.315 -10.341 116.53200000000001 -10.773Q115.74900000000001 -11.205 114.561 -11.205Q113.4 -11.205 112.4685 -10.6785Q111.537 -10.152 110.99700000000001 -9.1665Q110.45700000000001 -8.181 110.45700000000001 -6.777V-6.534Q110.45700000000001 -5.13 110.99700000000001 -4.131Q111.537 -3.132 112.4685 -2.6189999999999998Q113.4 -2.106 114.561 -2.106Q116.316 -2.106 117.23400000000001 -3.0105Q118.152 -3.915 118.39500000000001 -5.319L121.095 -4.6979999999999995Q120.771 -3.321 119.9475 -2.16Q119.12400000000001 -0.999 117.774 -0.3105Q116.424 0.378 114.507 0.378Z M130.30200000000002 0.378Q128.27700000000002 0.378 126.76500000000001 -0.4725Q125.25300000000001 -1.323 124.4025 -2.8754999999999997Q123.552 -4.428 123.552 -6.4799999999999995V-6.804Q123.552 -8.883 124.38900000000001 -10.4355Q125.22600000000001 -11.988 126.7245 -12.8385Q128.223 -13.689 130.19400000000002 -13.689Q132.11100000000002 -13.689 133.5555 -12.8385Q135.0 -11.988 135.81 -10.475999999999999Q136.62 -8.964 136.62 -6.939V-5.886H126.38700000000001Q126.44100000000002 -4.131 127.56150000000002 -3.0915Q128.68200000000002 -2.052 130.35600000000002 -2.052Q131.922 -2.052 132.7185 -2.754Q133.51500000000001 -3.456 133.947 -4.374L136.24200000000002 -3.186Q135.864 -2.43 135.1485 -1.593Q134.43300000000002 -0.756 133.27200000000002 -0.189Q132.11100000000002 0.378 130.30200000000002 0.378ZM126.41400000000002 -8.019H133.78500000000003Q133.67700000000002 -9.531 132.705 -10.381499999999999Q131.733 -11.232 130.167 -11.232Q128.601 -11.232 127.6155 -10.381499999999999Q126.63000000000001 -9.531 126.41400000000002 -8.019Z" fill="#FFFFFF"/><circle cx="10.3" cy="-17.3" r="1.8" fill="#FFB224"/></svg>
+        <p style="margin-top:12px;font-size:13.5px;color:#7E9391">Unlimited fibre and wireless internet for homes and businesses across Kenya.</p>
+      </div>
+      <div class="col">
+        <h4>Product</h4>
+        <a href="#plans">Home plans</a>
+        <a href="#business">Business</a>
+        </div>
+      <div class="col">
+        <h4>Support</h4>
+        <a href="https://wa.me/254700000000">WhatsApp us</a>
+        <a href="tel:+254700000000">0700 000 000</a>
+        <a href="mailto:habari@lightspace.africa">habari@lightspace.africa</a>
+      </div>
+      <div class="col">
+        <h4>Pay</h4>
+        <a>M-Pesa Paybill: 000000</a>
+        <a>Account: your phone number</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Lightspace Wireless Ltd. Licensed by the Communications Authority of Kenya.</span>
+      <span>Kenya · lightspace.africa</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- signature: the country comes online ---------- */
+(function(){
+  const svg = document.getElementById('skyline');
+  const W = 1200, H = 190;
+  let x = 0, bldgs = [];
+  let seed = 7; const rnd = () => (seed = (seed*9301+49297)%233280)/233280;
+  while (x < W) {
+    const bw = 60 + rnd()*90;
+    const bh = 50 + rnd()*115;
+    bldgs.push({x, w:bw, h:bh});
+    x += bw + 14 + rnd()*26;
+  }
+  let out = "";
+  bldgs.forEach((b,bi)=>{
+    out += `<rect x="${b.x}" y="${H-b.h}" width="${b.w}" height="${b.h}" rx="3" fill="#0E181B" stroke="#173035" stroke-width="1"/>`;
+    const cols = Math.floor(b.w/24), rows = Math.floor(b.h/26);
+    for(let c=0;c<cols;c++) for(let r=0;r<rows;r++){
+      const wx=b.x+12+c*24, wy=H-b.h+12+r*26;
+      out += `<rect x="${wx}" y="${wy}" width="11" height="11" rx="3" fill="none" stroke="#20444A" stroke-width="1.4"/>`;
+      if(rnd()<0.42){
+        out += `<circle class="win" data-b="${bi}" data-x="${wx}" cx="${wx+5.5}" cy="${wy+5.5}" r="2.6" fill="#FFB224"/>`;
+      }
+    }
+  });
+  svg.innerHTML = out;
+  const els = Array.from(svg.querySelectorAll('.win'));
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced){ els.forEach(e=>e.classList.add('on')); return; }
+
+  const set = (e,o)=> e.style.opacity = o;
+  const timers = [];
+  const later = (fn,t)=> timers.push(setTimeout(fn,t));
+  const clearAll = ()=>{ while(timers.length) clearTimeout(timers.pop()); };
+
+  /* Act 0 — ignition, one by one */
+  const order = els.slice().sort(()=>Math.random()-0.5);
+  order.forEach((e,i)=> later(()=>{ e.classList.add('on'); set(e,1); }, 500 + i*85));
+  const igniteDone = 500 + order.length*85 + 800;
+
+  /* pattern library — each returns its duration */
+  const byX = els.slice().sort((a,b)=>a.dataset.x-b.dataset.x);
+  const maxB = Math.max(...els.map(e=>+e.dataset.b));
+
+  function wave(){          // a dip of light sweeps across town
+    byX.forEach((e,i)=>{
+      const t = i*36;
+      later(()=>set(e,.18), t);
+      later(()=>set(e,1),  t+650);
+    });
+    return byX.length*36 + 1600;
+  }
+  function breathe(){       // the whole city inhales together, twice
+    for(let k=0;k<2;k++){
+      later(()=>els.forEach(e=>set(e,.35)), k*3400);
+      later(()=>els.forEach(e=>set(e,1)),  k*3400+1700);
+    }
+    return 2*3400 + 900;
+  }
+  function twinkle(){       // scattered soft flickers
+    for(let k=0;k<26;k++){
+      const e = els[Math.floor(Math.random()*els.length)];
+      const t = Math.random()*4200;
+      later(()=>set(e,.25), t);
+      later(()=>set(e,1),   t+420+Math.random()*400);
+    }
+    return 5400;
+  }
+  function cascade(){       // building by building, a rolling blackout that heals
+    for(let b=0;b<=maxB;b++){
+      const grp = els.filter(e=>+e.dataset.b===b);
+      const t = b*260;
+      later(()=>grp.forEach(e=>set(e,.15)), t);
+      later(()=>grp.forEach(e=>set(e,1)),  t+700);
+    }
+    return maxB*260 + 1700;
+  }
+
+  const acts = [breathe, wave, twinkle, cascade];
+  let ai = 0;
+  function nextAct(){
+    clearAll();
+    const dur = acts[ai % acts.length]();
+    ai++;
+    later(nextAct, dur + 1800);   // a beat of stillness between acts
+  }
+  later(nextAct, igniteDone);
+})();
+
+
+/* ---------- plan tabs + custom bandwidth pricing ---------- */
+let planMode='home';
+const ANCH={home:[[50,999],[150,1899],[300,3999],[600,5499],[1000,8999]],
+            biz:[[50,2999],[150,4499],[300,6999],[600,10499],[1000,14999]]};
+function planTab(m){
+  planMode=m;
+  document.getElementById('grid-home').classList.toggle('on',m==='home');
+  document.getElementById('grid-biz').classList.toggle('on',m==='biz');
+  document.getElementById('tab-home').classList.toggle('on',m==='home');
+  document.getElementById('tab-biz').classList.toggle('on',m==='biz');
+  bwCalc();
+}
+function bwCalc(){
+  const v=+document.getElementById('bw').value;
+  const a=ANCH[planMode];
+  let p=a[a.length-1][1];
+  for(let i=0;i<a.length-1;i++){
+    if(v>=a[i][0]&&v<=a[i+1][0]){
+      const t=(v-a[i][0])/(a[i+1][0]-a[i][0]);
+      p=a[i][1]+t*(a[i+1][1]-a[i][1]);break;
+    }
+  }
+  p=Math.round(p/100)*100-1;
+  document.getElementById('bwv').textContent=v;
+  document.getElementById('bwp').textContent=p.toLocaleString();
+  const seg=planMode==='biz'?'business':'home';
+  document.getElementById('bwcta').href='https://wa.me/254700000000?text='+encodeURIComponent(`Habari! I'd like a custom ${seg} plan: ${v} Mbps at about KES ${p.toLocaleString()}/month.`);
+}
+bwCalc();
+</script>
+</body>
+</html>
