@@ -1,3 +1,14 @@
-.DS_Store
+# build output
+dist/
+.astro/
+
+# deps
 node_modules/
+
+# vercel
 .vercel
+
+# os / env
+.DS_Store
+.env
+.env.production
