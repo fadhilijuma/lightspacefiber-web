@@ -67,6 +67,61 @@ export function getStaticPaths() {
       estates: ["Milimani", "Section 58", "Naka", "London", "Shabab", "Free Area", "Kiamunyi", "Pipeline (Nakuru)"],
       pitch: "Join the Nakuru waitlist on WhatsApp — the estates with the most requests are switched on first, and early sign-ups get launch pricing and priority installation.",
     },
+    {
+      area: "zimmerman",
+      name: "Zimmerman",
+      status: "live",
+      title: "Unlimited Internet in Zimmerman — WiFi with No FUP | Lightspace",
+      desc: "Truly unlimited WiFi in Zimmerman, Nairobi — no fair-usage policy, no evening slowdowns. From KES 999/month, installed within 24 hours from our Roysambu base.",
+      h1: "Unlimited internet in Zimmerman",
+      intro: "Zimmerman's high-rises are some of the most connected buildings in Nairobi — and some of the most underserved, with shared connections that crawl every evening. Lightspace runs its own fibre-backed network from Roysambu next door, delivering truly unlimited internet with no fair-usage policy to individual apartments at full speed, all month.",
+      estates: ["Zimmerman Base", "Zimmerman Sonko", "Roundabout area", "Congo", "Kwa Mbao", "Boma estate", "Weiteithie flats", "Kamiti Road side"],
+      pitch: "Apartment blocks are our home game: one rooftop radio or a fibre drop serves the building, and every unit gets its own dedicated unlimited plan from KES 999/month — no sharing, no cap, paid by M-Pesa.",
+    },
+    {
+      area: "githurai",
+      name: "Githurai",
+      status: "live",
+      title: "Unlimited Internet in Githurai 44 & 45 — No FUP WiFi | Lightspace",
+      desc: "Unlimited home WiFi in Githurai 44 and Githurai 45 — no fair-usage policy, from KES 999/month. Installed fast by a local Roysambu-based team.",
+      h1: "Unlimited internet in Githurai",
+      intro: "Githurai 44 and 45 run on hustle, and hustle needs internet that doesn't quit at 8pm. Lightspace delivers truly unlimited fixed internet across Githurai's plots and flats — no fair-usage policy, no speed cuts after a hidden cap — from our own network base minutes away in Roysambu.",
+      estates: ["Githurai 44", "Githurai 45", "Kimbo Road side", "Progressive", "Mwihoko", "Kahawa Barracks fringe", "Clay Works", "Mugumo"],
+      pitch: "From single rooms to family flats: one honest price, truly unlimited, paid by M-Pesa with no contract. If you stop paying, service pauses — when you pay, your home lights back up. No penalties, no fine print.",
+    },
+    {
+      area: "kahawa-sukari",
+      name: "Kahawa Sukari",
+      status: "expanding",
+      title: "Unlimited Internet in Kahawa Sukari & Wendani | Lightspace",
+      desc: "Truly unlimited fibre & wireless internet reaching Kahawa Sukari and Kahawa Wendani — no FUP, from KES 999/month. Check availability for your street on WhatsApp.",
+      h1: "Unlimited internet in Kahawa Sukari",
+      intro: "Kahawa Sukari's family homes and Kahawa Wendani's apartments deserve better than 'unlimited' plans with asterisks. As Lightspace extends up Thika Road from Roysambu, we bring the same promise our neighbours already enjoy: unlimited means unlimited — work-from-home, 4K streaming and gaming on the same line, all month.",
+      estates: ["Kahawa Sukari", "Kahawa Wendani", "Kahawa West", "Sukari Presbyterian area", "Baptist area", "Membley boundary", "Kenyatta Road junction", "Farmers"],
+      pitch: "We're switching on new streets in Kahawa every month. WhatsApp your street and gate colour — if we're live you're online within 24 hours, and if not yet, your request moves Kahawa up the build plan.",
+    },
+    {
+      area: "mirema",
+      name: "Mirema",
+      status: "live",
+      title: "Unlimited Internet on Mirema Drive — Apartment WiFi | Lightspace",
+      desc: "Dedicated unlimited WiFi for Mirema Drive apartments — no shared lines, no FUP, from KES 999/month. Same-day confirmation, 24-hour installation.",
+      h1: "Unlimited internet on Mirema Drive",
+      intro: "Mirema Drive is wall-to-wall high-rise living, and most buildings share one overloaded line. Lightspace connects your building to our own fibre backbone — the base station is minutes away in Roysambu — and gives every apartment its own dedicated, truly unlimited connection with no fair-usage policy.",
+      estates: ["Mirema Drive", "Mirema Springs", "Top Quality area", "Stedmak stage", "Thika Road boundary", "Kihunguro side", "Garden City fringe", "Lumumba Drive"],
+      pitch: "Ask your caretaker if Lightspace is in the building — and if not, WhatsApp us the building name. One visit connects the whole block, and every tenant chooses their own plan from KES 999/month.",
+    },
+    {
+      area: "juja",
+      name: "Juja",
+      status: "expanding",
+      title: "Unlimited Internet in Juja & JKUAT Area — No FUP | Lightspace",
+      desc: "Truly unlimited internet reaching Juja town and the JKUAT area — student-friendly pricing from KES 999/month, no fair-usage policy. Join via WhatsApp.",
+      h1: "Unlimited internet in Juja",
+      intro: "Between JKUAT, Juja town and the estates along Thika Road, Juja is one of the youngest, most online postcodes in Kenya — and its internet is priced like a luxury. Lightspace brings truly unlimited internet with no fair-usage policy at prices built for students and young families, as our network extends past Ruiru.",
+      estates: ["Juja town", "JKUAT gate area", "Highpoint", "Sewage area", "Gachororo", "Juja South", "Athi side", "Kalimoni"],
+      pitch: "Hostels, bedsitters and family plots: from KES 999/month truly unlimited, M-Pesa monthly, no contract. WhatsApp your plot and we'll tell you the same day whether your street is live or next on the plan.",
+    },
   ];
   return areas.map((a) => ({ params: { area: a.area }, props: a }));
 }
@@ -98,7 +153,7 @@ const crumbs = {
     { "@type": "ListItem", position: 2, name: `Internet in ${name}`, item: url },
   ],
 };
-const others = ["roysambu","kasarani","ruiru","kiambu","thika","nakuru"].filter(a => a !== Astro.params.area);
+const others = ["roysambu","kasarani","zimmerman","githurai","mirema","kahawa-sukari","ruiru","kiambu","juja","thika","nakuru"].filter(a => a !== Astro.params.area);
 ---
 <!DOCTYPE html>
 <html lang="en">
