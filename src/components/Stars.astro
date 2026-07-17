@@ -9,7 +9,8 @@
     const w = host.clientWidth, h = host.clientHeight;
     if (!w || !h) return;
     const dpr = Math.min(2, window.devicePixelRatio || 1);
-    cv.width = w*dpr; cv.height = h*dpr;
+    cv.width = Math.round(w*dpr); cv.height = Math.round(h*dpr);
+    cv.style.width = w + 'px'; cv.style.height = h + 'px';
     const ctx = cv.getContext('2d');
     ctx.scale(dpr, dpr);
     let seed = 42; const rnd = () => (seed = (seed*9301+49297)%233280)/233280;
@@ -63,6 +64,7 @@
   draw();
   /* hero height settles after fonts/layout — redraw whenever it changes */
   if (window.ResizeObserver) new ResizeObserver(queue).observe(host);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(queue);
   addEventListener('load', queue);
   addEventListener('resize', queue);
 })();
