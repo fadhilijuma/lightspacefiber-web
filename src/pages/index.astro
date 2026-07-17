@@ -51,7 +51,7 @@ a{color:inherit;text-decoration:none}
 :focus-visible{outline:2.5px solid var(--teal-lt);outline-offset:2px}
 
 /* ---------- nav ---------- */
-nav{position:sticky;top:0;z-index:50;background:rgba(10,18,20,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(92,184,178,.15)}
+nav{position:sticky;top:0;z-index:50;background:rgba(7,14,16,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
 .navin{display:flex;align-items:center;justify-content:space-between;height:66px}
 .logo{display:flex;align-items:center;gap:12px}
 .logo svg{display:block}
@@ -63,19 +63,24 @@ nav{position:sticky;top:0;z-index:50;background:rgba(10,18,20,.92);backdrop-filt
 .burger span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;border-radius:2px}
 
 /* ---------- hero ---------- */
-.hero{background:linear-gradient(180deg,#070E10 0%, #0A1214 55%, #0F2A2E 88%, #14444478 100%),var(--night);color:#fff;position:relative;overflow:hidden}
+.hero{background:linear-gradient(0deg,rgba(255,178,36,.055) 0,transparent 210px),radial-gradient(ellipse at 70% 12%,rgba(15,123,122,.10),transparent 45%),linear-gradient(180deg,#070E10 0%, #0A1214 55%, #0F2A2E 88%, #14444478 100%),var(--night);color:#fff;position:relative;overflow:hidden}
 .stars{position:absolute;top:0;left:0;width:100%;height:72%;z-index:1;pointer-events:none}
 .stars circle{animation:twinkle 4s ease-in-out infinite}
 @keyframes twinkle{0%,100%{opacity:var(--o)}50%{opacity:calc(var(--o)*0.3)}}
 @media(prefers-reduced-motion: reduce){.stars circle{animation:none}}
-.hero .wrap{position:relative;z-index:2;padding-top:104px;padding-bottom:216px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.8fr);gap:70px;align-items:center}
-.herostats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.hstat{border:1px solid rgba(92,184,178,.25);background:rgba(14,24,27,.6);backdrop-filter:blur(6px);border-radius:16px;padding:24px 22px}
-.hstat b{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,2.3vw,38px);color:var(--teal-lt);display:block;font-weight:600;line-height:1.1}
-.hstat:first-child b{color:var(--amber)}
-.hstat span{font-size:13px;color:#8FA6A3;line-height:1.5;display:block;margin-top:7px}
+.hero .wrap{position:relative;z-index:2;padding-top:104px;padding-bottom:216px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.8fr);gap:70px;align-items:start}
+.herostats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px}
+.hstat{background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid rgba(92,184,178,.16);border-top-color:rgba(255,255,255,.14);backdrop-filter:blur(10px);border-radius:16px;padding:26px 24px;box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.hstat b{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,2.3vw,38px);color:#EAF4F2;display:block;font-weight:600;line-height:1.1}
+.hstat b small{font-size:17px;font-weight:500;color:rgba(214,228,226,.65)}
+.hstat i{display:block;font-style:normal;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(214,228,226,.6);margin-bottom:4px}
+.hstat span{font-size:13.5px;color:rgba(214,228,226,.72);line-height:1.5;display:block;margin-top:7px}
 .hero h1{font-size:clamp(38px,6vw,72px);line-height:1.05;font-weight:600;max-width:800px;letter-spacing:-0.01em}
 .hero h1 em{font-style:normal;color:var(--teal-lt)}
+.hero h1 .hdot{color:var(--amber)}
+.herocta{padding:16px 30px;font-size:17px;box-shadow:0 0 28px rgba(92,184,178,.22)}
+.covlink{color:var(--teal-lt);font-size:15.5px;font-weight:500}
+.covlink:hover{color:#fff}
 .hero p.lead{margin:22px 0 34px;font-size:clamp(17px,1.4vw,20px);color:#AFC2C0;max-width:580px}
 .skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:190px;z-index:1}
 .win{opacity:0;transition:opacity .6s ease}
@@ -84,8 +89,8 @@ nav{position:sticky;top:0;z-index:50;background:rgba(10,18,20,.92);backdrop-filt
 @media (prefers-reduced-motion: reduce){.win{opacity:1;transition:none}}
 
 /* ---------- trust strip ---------- */
-.trust{background:var(--night2);color:#8FA6A3;border-top:1px solid rgba(92,184,178,.12)}
-.trust .wrap{display:flex;gap:8px 34px;flex-wrap:wrap;justify-content:center;padding:20px 24px;font-size:13.5px;font-weight:500}
+.trust{background:rgba(255,255,255,.02);background-color:var(--night2);color:#8FA6A3}
+.trust .wrap{display:flex;gap:8px 34px;flex-wrap:wrap;justify-content:center;padding:24px;font-size:13.5px;font-weight:500}
 .trust b{color:var(--teal-lt);font-weight:600}
 
 /* ---------- sections ---------- */
@@ -226,27 +231,28 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
       <a href="#plans">Plans</a>
       <a href="#business">Business</a>
       <a href="#faq">FAQ</a>
-      <a class="btn" href="#plans">Get connected</a>
+      <a class="btn ghost" style="border-color:rgba(92,184,178,.5);color:#5CB8B2" href="#plans">Get connected</a>
     </div>
   </div>
 </nav>
 
 <header class="hero" id="top">
-  <svg class="stars" id="stars" preserveAspectRatio="none" aria-hidden="true"></svg>
+  <svg class="stars" id="stars" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
   <div class="wrap">
     <div class="herocopy">
       <div class="eyebrow" style="color:#5CB8B2">Unlimited internet · Fibre &amp; wireless</div>
-      <h1>The night your home <em>comes online.</em></h1>
+      <h1>The night your home comes <em>online<span class="hdot">.</span></em></h1>
       <p class="lead">Truly unlimited internet for your home or business. No fair-usage fine print, no surprises. Installed fast, countrywide.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a class="btn" href="#plans">See plans</a>
+      <div style="display:flex;gap:26px;flex-wrap:wrap;align-items:center">
+        <a class="btn herocta" href="#plans">See plans</a>
+        <a class="covlink" href="#coverage">Check coverage in your area &rarr;</a>
       </div>
     </div>
     <div class="herostats">
       <div class="hstat"><b>&#8734;</b><span>No usage cap — unlimited means unlimited, all month</span></div>
       <div class="hstat"><b>24 hrs</b><span>From order to online — fibre drop or rooftop radio</span></div>
       <div class="hstat"><b>99.9%</b><span>Uptime on our multihomed fibre backbone</span></div>
-      <div class="hstat"><b>KES 999</b><span>Truly unlimited home internet, from /month</span></div>
+      <div class="hstat"><i>From</i><b>KES 999<small>/mo</small></b><span>Truly unlimited home internet</span></div>
     </div>
   </div>
   <svg class="skyline" id="skyline" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
@@ -545,101 +551,128 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
     let seed2 = 42; const rnd2 = () => (seed2 = (seed2*9301+49297)%233280)/233280;
     sk.setAttribute('viewBox','0 0 1200 500');
     let st = '';
-    for (let i = 0; i < 110; i++) {
-      const x = rnd2()*1200, y = rnd2()*500;
-      const r = 0.5 + rnd2()*1.1;
-      const o = (0.18 + rnd2()*0.55).toFixed(2);
-      const amber = rnd2() < 0.06;
+    for (let i = 0; i < 170; i++) {
+      const x = rnd2()*1200, y = Math.pow(rnd2(),1.45)*500;   /* thins toward the horizon */
+      if (x > 170 && x < 820 && y > 120 && y < 440) continue;   /* keep the headline column quiet */
+      const t = rnd2();
+      let r, o, halo = false;
+      if (t < .68)      { r = .45 + rnd2()*.35; o = .2 + rnd2()*.15; }
+      else if (t < .94) { r = .95 + rnd2()*.45; o = .45 + rnd2()*.15; }
+      else              { r = 1.2 + rnd2()*.35; o = .8; halo = true; }
+      const amber = rnd2() < .06;
+      const fill = amber ? '#FFB224' : '#CFE6E4';
       const dur = (3 + rnd2()*5).toFixed(1), delay = (-rnd2()*8).toFixed(1);
-      st += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(2)}" fill="${amber ? '#FFB224' : '#CFE6E4'}" style="--o:${o};opacity:${o};animation-duration:${dur}s;animation-delay:${delay}s"/>`;
+      if (halo) st += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(r*2.2).toFixed(2)}" fill="${fill}" opacity="0.07"/>`;
+      st += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(2)}" fill="${fill}" style="--o:${o.toFixed(2)};opacity:${o.toFixed(2)};animation-duration:${dur}s;animation-delay:${delay}s"/>`;
     }
     sk.innerHTML = st;
   })();
 
   const svg = document.getElementById('skyline');
-  const W = 1200, H = 190;
-  let x = 0, bldgs = [];
-  let seed = 7; const rnd = () => (seed = (seed*9301+49297)%233280)/233280;
-  while (x < W) {
-    const bw = 60 + rnd()*90;
-    const bh = 50 + rnd()*115;
-    bldgs.push({x, w:bw, h:bh});
-    x += bw + 14 + rnd()*26;
-  }
-  let out = "";
-  bldgs.forEach((b,bi)=>{
-    out += `<rect x="${b.x}" y="${H-b.h}" width="${b.w}" height="${b.h}" rx="3" fill="#0E181B" stroke="#173035" stroke-width="1"/>`;
-    const cols = Math.floor(b.w/24), rows = Math.floor(b.h/26);
-    for(let c=0;c<cols;c++) for(let r=0;r<rows;r++){
-      const wx=b.x+12+c*24, wy=H-b.h+12+r*26;
-      out += `<rect x="${wx}" y="${wy}" width="11" height="11" rx="3" fill="none" stroke="#20444A" stroke-width="1.4"/>`;
-      if(rnd()<0.42){
-        out += `<circle class="win" data-b="${bi}" data-x="${wx}" cx="${wx+5.5}" cy="${wy+5.5}" r="2.6" fill="#FFB224"/>`;
-      }
-    }
-  });
-  svg.innerHTML = out;
-  const els = Array.from(svg.querySelectorAll('.win'));
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced){ els.forEach(e=>e.classList.add('on')); return; }
-
-  const set = (e,o)=> e.style.opacity = o;
+  const H = 190;
   const timers = [];
   const later = (fn,t)=> timers.push(setTimeout(fn,t));
   const clearAll = ()=>{ while(timers.length) clearTimeout(timers.pop()); };
+  let builtW = 0;
 
-  /* Act 0 — ignition, one by one */
-  const order = els.slice().sort(()=>Math.random()-0.5);
-  order.forEach((e,i)=> later(()=>{ e.classList.add('on'); set(e,1); }, 500 + i*85));
-  const igniteDone = 500 + order.length*85 + 800;
-
-  /* pattern library — each returns its duration */
-  const byX = els.slice().sort((a,b)=>a.dataset.x-b.dataset.x);
-  const maxB = Math.max(...els.map(e=>+e.dataset.b));
-
-  function wave(){          // a dip of light sweeps across town
-    byX.forEach((e,i)=>{
-      const t = i*36;
-      later(()=>set(e,.18), t);
-      later(()=>set(e,1),  t+650);
-    });
-    return byX.length*36 + 1600;
-  }
-  function breathe(){       // the whole city inhales together, twice
-    for(let k=0;k<2;k++){
-      later(()=>els.forEach(e=>set(e,.35)), k*3400);
-      later(()=>els.forEach(e=>set(e,1)),  k*3400+1700);
-    }
-    return 2*3400 + 900;
-  }
-  function twinkle(){       // scattered soft flickers
-    for(let k=0;k<26;k++){
-      const e = els[Math.floor(Math.random()*els.length)];
-      const t = Math.random()*4200;
-      later(()=>set(e,.25), t);
-      later(()=>set(e,1),   t+420+Math.random()*400);
-    }
-    return 5400;
-  }
-  function cascade(){       // building by building, a rolling blackout that heals
-    for(let b=0;b<=maxB;b++){
-      const grp = els.filter(e=>+e.dataset.b===b);
-      const t = b*260;
-      later(()=>grp.forEach(e=>set(e,.15)), t);
-      later(()=>grp.forEach(e=>set(e,1)),  t+700);
-    }
-    return maxB*260 + 1700;
-  }
-
-  const acts = [breathe, wave, twinkle, cascade];
-  let ai = 0;
-  function nextAct(){
+  function initSkyline(){
     clearAll();
-    const dur = acts[ai % acts.length]();
-    ai++;
-    later(nextAct, dur + 1800);   // a beat of stillness between acts
+    /* build to the REAL rendered width (1 unit = 1 px) so no building is ever cropped */
+    const W = Math.max(320, Math.ceil(svg.clientWidth || innerWidth));
+    builtW = W;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    let x = 0, bldgs = [];
+    let seed = 7; const rnd = () => (seed = (seed*9301+49297)%233280)/233280;
+    while (x < W) {
+      const bw = 48 + rnd()*118;      /* wider variance — composed, not placed */
+      const bh = 50 + rnd()*112;      /* max 162 of 190 — sky gap guaranteed */
+      bldgs.push({x, w:bw, h:bh});
+      x += bw + (rnd() < .3 ? -(8 + rnd()*20) : 12 + rnd()*30);   /* occasional overlap */
+    }
+    /* distant background layer — dim, windowless, fills the void above the rooftops */
+    let out = "", bx = -30, seedB = 21; const rndB = () => (seedB = (seedB*9301+49297)%233280)/233280;
+    while (bx < W) {
+      const bw = 70 + rndB()*120, bh = 120 + rndB()*58;   /* tops reach ~12px above foreground */
+      out += `<rect x="${bx}" y="${H-bh}" width="${bw}" height="${bh}" rx="3" fill="#0C1719"/>`;
+      bx += bw + 6 + rndB()*30;
+    }
+    bldgs.forEach((b,bi)=>{
+      out += `<rect x="${b.x}" y="${H-b.h}" width="${b.w}" height="${b.h}" rx="3" fill="#0E181B" stroke="#173035" stroke-width="1"/>`;
+      const cols = Math.floor(b.w/24), rows = Math.floor(b.h/26);
+      for(let c=0;c<cols;c++) for(let r=0;r<rows;r++){
+        const wx=b.x+12+c*24, wy=H-b.h+12+r*26;
+        out += `<rect x="${wx}" y="${wy}" width="11" height="11" rx="3" fill="none" stroke="#20444A" stroke-width="1.4"/>`;
+        if(rnd()<0.42){
+          const tier = rnd() < .55 ? 1 : (rnd() < .6 ? .62 : .34);
+          out += `<circle class="win" data-b="${bi}" data-x="${wx}" data-t="${tier}" cx="${wx+5.5}" cy="${wy+5.5}" r="2.6" fill="#FFB224"/>`;
+        }
+      }
+    });
+    svg.innerHTML = out;
+    const els = Array.from(svg.querySelectorAll('.win'));
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced){ els.forEach(e=>{ e.classList.add('on'); e.style.opacity=1; }); return; }
+
+    const set = (e,o)=> e.style.opacity = o * (+e.dataset.t || 1);
+
+    /* Act 0 — ignition, one by one */
+    const order = els.slice().sort(()=>Math.random()-0.5);
+    order.forEach((e,i)=> later(()=>{ e.classList.add('on'); set(e,1); }, 500 + i*85));
+    const igniteDone = 500 + order.length*85 + 800;
+
+    const byX = els.slice().sort((a,b)=>a.dataset.x-b.dataset.x);
+    const maxB = Math.max(...els.map(e=>+e.dataset.b));
+
+    function wave(){
+      byX.forEach((e,i)=>{
+        const t = i*36;
+        later(()=>set(e,.18), t);
+        later(()=>set(e,1),  t+650);
+      });
+      return byX.length*36 + 1600;
+    }
+    function breathe(){
+      for(let k=0;k<2;k++){
+        later(()=>els.forEach(e=>set(e,.35)), k*3400);
+        later(()=>els.forEach(e=>set(e,1)),  k*3400+1700);
+      }
+      return 2*3400 + 900;
+    }
+    function twinkle(){
+      for(let k=0;k<26;k++){
+        const e = els[Math.floor(Math.random()*els.length)];
+        const t = Math.random()*4200;
+        later(()=>set(e,.25), t);
+        later(()=>set(e,1),   t+420+Math.random()*400);
+      }
+      return 5400;
+    }
+    function cascade(){
+      for(let b=0;b<=maxB;b++){
+        const grp = els.filter(e=>+e.dataset.b===b);
+        const t = b*260;
+        later(()=>grp.forEach(e=>set(e,.15)), t);
+        later(()=>grp.forEach(e=>set(e,1)),  t+700);
+      }
+      return maxB*260 + 1700;
+    }
+
+    const acts = [breathe, wave, twinkle, cascade];
+    let ai = 0;
+    function nextAct(){
+      const dur = acts[ai % acts.length]();
+      ai++;
+      later(nextAct, dur + 1800);
+    }
+    later(nextAct, igniteDone);
   }
-  later(nextAct, igniteDone);
+
+  initSkyline();
+  let rto;
+  addEventListener('resize', ()=>{
+    clearTimeout(rto);
+    rto = setTimeout(()=>{ if (Math.abs((svg.clientWidth||innerWidth) - builtW) > 60) initSkyline(); }, 350);
+  });
 })();
 
 
