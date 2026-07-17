@@ -214,6 +214,7 @@ export function getStaticPaths() {
   return areas.map((a) => ({ params: { area: a.area }, props: a }));
 }
 import Stars from "../../components/Stars.astro";
+import Analytics from "../../components/Analytics.astro";
 const { name, status, title, desc, h1, intro, estates, pitch } = Astro.props;
 const SITE = "https://www.lightspacefiber.com";
 const url = `${SITE}/internet/${Astro.params.area}/`;
@@ -260,6 +261,7 @@ const others = ["roysambu","kasarani","zimmerman","githurai","mirema","kahawa-su
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json" set:html={JSON.stringify(ld)}></script>
 <script type="application/ld+json" set:html={JSON.stringify(crumbs)}></script>
+<Analytics />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style is:global>

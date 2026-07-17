@@ -1,0 +1,28 @@
+{/* Google Analytics 4 + lead events (WhatsApp / CTA clicks) */}
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-VSBHY3X5S3"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VSBHY3X5S3');
+
+  /* lead events: what actually matters — who clicks WhatsApp, and from which page */
+  document.addEventListener('click', function(e){
+    const a = e.target && e.target.closest ? e.target.closest('a') : null;
+    if (!a) return;
+    const href = a.getAttribute('href') || '';
+    const label = (a.textContent || '').trim().slice(0, 60);
+    const page = location.pathname;
+    if (href.indexOf('wa.me') !== -1) {
+      gtag('event', 'whatsapp_click', { link_text: label, area_page: page });
+    } else if (href === '#plans' || href === '/#plans') {
+      gtag('event', 'cta_see_plans', { link_text: label, area_page: page });
+    } else if (href === '#coverage') {
+      gtag('event', 'cta_check_coverage', { area_page: page });
+    } else if (href.indexOf('/internet/') === 0) {
+      gtag('event', 'area_page_click', { target_area: href, area_page: page });
+    } else if (href.indexOf('tel:') === 0) {
+      gtag('event', 'phone_click', { area_page: page });
+    }
+  }, true);
+</script>
