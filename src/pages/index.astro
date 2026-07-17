@@ -231,7 +231,7 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
 </nav>
 
 <header class="hero" id="top">
-  <svg class="stars" id="stars" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
+  <canvas class="stars" id="stars" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="herocopy">
       <div class="eyebrow" style="color:#5CB8B2">Unlimited internet · Fibre &amp; wireless</div>
@@ -536,39 +536,71 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
     });
   });
 
-  /* night sky — distant stars only, like a photograph: tiny, faint, still */
+  /* night sky — photographic density: thousands of tiny stars, none protrude */
   (function(){
-    const sk = document.getElementById('stars');
-    if (!sk) return;
-    let seed2 = 42; const rnd2 = () => (seed2 = (seed2*9301+49297)%233280)/233280;
-    sk.setAttribute('viewBox','0 0 1200 640');
-    let st = '<defs><radialGradient id="neb"><stop offset="0%" stop-color="#5CB8B2" stop-opacity=".045"/><stop offset="100%" stop-color="#5CB8B2" stop-opacity="0"/></radialGradient></defs>';
-    st += '<ellipse cx="850" cy="180" rx="380" ry="190" fill="url(#neb)"/>';
-    st += '<ellipse cx="260" cy="80" rx="280" ry="130" fill="url(#neb)"/>';
-    const overCopy = (x,y)=> x>140 && x<900 && y>60 && y<520;
-    /* base field */
-    for (let i=0;i<520;i++){
-      const x=rnd2()*1200, y=rnd2()*640;
-      const dim = overCopy(x,y);
-      const o=(dim ? .04+rnd2()*.06 : .08+rnd2()*.22).toFixed(2);
-      st+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(.3+rnd2()*.5).toFixed(2)}" fill="#CFE6E4" opacity="${o}"/>`;
+    const cv = document.getElementById('stars');
+    if (!cv || !cv.getContext) return;
+    const hero = cv.closest('.hero');
+    function draw(){
+      const w = hero.clientWidth, h = hero.clientHeight;
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      cv.width = w*dpr; cv.height = h*dpr;
+      const ctx = cv.getContext('2d');
+      ctx.scale(dpr, dpr);
+      let seed = 42; const rnd = () => (seed = (seed*9301+49297)%233280)/233280;
+      const overCopy = (x,y)=> x > w*.12 && x < w*.72 && y > h*.12 && y < h*.82;
+
+      /* milky-way cloud: soft luminous washes along a diagonal */
+      const bandPts = 26;
+      for (let i=0;i<bandPts;i++){
+        const t=i/bandPts;
+        const bx = w*.08 + t*w*.9 + (rnd()-.5)*w*.06;
+        const by = h*.08 + t*h*.5 + (rnd()-.5)*h*.10;
+        const rr = 60 + rnd()*150;
+        const g = ctx.createRadialGradient(bx,by,0,bx,by,rr);
+        g.addColorStop(0, 'rgba(205,230,227,0.028)');
+        g.addColorStop(1, 'rgba(205,230,227,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(bx-rr,by-rr,rr*2,rr*2);
+      }
+
+      function star(x,y,r,a,warm){
+        ctx.globalAlpha = a;
+        ctx.fillStyle = warm ? '#F2E7D5' : (rnd()<.3 ? '#D6E9F5' : '#E6F2F0');
+        ctx.beginPath(); ctx.arc(x,y,r,0,6.2832); ctx.fill();
+      }
+
+      /* base field — everywhere */
+      const baseN = Math.round(w*h/950);
+      for (let i=0;i<baseN;i++){
+        const x=rnd()*w, y=rnd()*h;
+        let a = .10 + Math.pow(rnd(),1.6)*.42;
+        if (overCopy(x,y)) a *= .55;
+        star(x, y, .35 + rnd()*.65, a, rnd()<.06);
+      }
+      /* milky-way dense band */
+      const bandN = Math.round(w*h/1900);
+      for (let i=0;i<bandN;i++){
+        const t=rnd();
+        const x = w*.08 + t*w*.9 + (rnd()-.5)*w*.16;
+        const y = h*.08 + t*h*.5 + (rnd()-.5)*h*.22;
+        if (x<0||x>w||y<0||y>h) continue;
+        let a = .08 + Math.pow(rnd(),1.4)*.38;
+        if (overCopy(x,y)) a *= .55;
+        star(x, y, .3 + rnd()*.55, a);
+      }
+      /* clearer pinpoints — small but present, like a long exposure */
+      const pinN = Math.round(w/9);
+      for (let i=0;i<pinN;i++){
+        const x=rnd()*w, y=rnd()*h;
+        let a = .45 + rnd()*.3;
+        if (overCopy(x,y)) a *= .5;
+        star(x, y, .7 + rnd()*.5, a);
+      }
+      ctx.globalAlpha = 1;
     }
-    /* milky-way density band */
-    for (let i=0;i<260;i++){
-      const t=rnd2(); const bx=120+t*1030, by=60+t*330;
-      const x=bx+(rnd2()-.5)*260, y=by+(rnd2()-.5)*150;
-      if (y<0||y>640) continue;
-      const dim = overCopy(x,y);
-      const o=(dim ? .04+rnd2()*.05 : .06+rnd2()*.2).toFixed(2);
-      st+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(.3+rnd2()*.4).toFixed(2)}" fill="#D8ECE9" opacity="${o}"/>`;
-    }
-    /* slightly clearer pinpoints — still small, still background */
-    for (let i=0;i<70;i++){
-      const x=rnd2()*1200, y=rnd2()*640;
-      if (overCopy(x,y)) continue;
-      st+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(.6+rnd2()*.35).toFixed(2)}" fill="#DDEEEB" opacity="${(.28+rnd2()*.18).toFixed(2)}"/>`;
-    }
-    sk.innerHTML = st;
+    draw();
+    let rt; addEventListener('resize', ()=>{ clearTimeout(rt); rt=setTimeout(draw, 300); });
   })();
 })();
 
