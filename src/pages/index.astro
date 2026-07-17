@@ -38,6 +38,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+section[id],header[id]{scroll-margin-top:78px}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px}
 h1,h2,h3,.sg{font-family:'Space Grotesk',sans-serif}
 a{color:inherit;text-decoration:none}
@@ -511,6 +512,28 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
 <script is:inline>
 /* ---------- signature: the country comes online ---------- */
 (function(){
+
+  /* anchor scrolling: smooth when the browser honours it, instant otherwise */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      const t = id && document.getElementById(id);
+      if (!t) return;
+      e.preventDefault();
+      history.pushState(null, '', '#' + id);
+      const y = Math.max(0, t.getBoundingClientRect().top + window.scrollY - 78);
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      let last = window.scrollY, checks = 0;
+      const iv = setInterval(() => {
+        const cur = window.scrollY;
+        if (Math.abs(cur - y) < 40 || ++checks > 20) { clearInterval(iv); return; }
+        if (Math.abs(cur - last) < 2) { clearInterval(iv); window.scrollTo(0, y); return; }
+        last = cur;
+      }, 180);
+      document.querySelector('.navlinks')?.classList.remove('open');
+    });
+  });
+
   const svg = document.getElementById('skyline');
   const W = 1200, H = 190;
   let x = 0, bldgs = [];
