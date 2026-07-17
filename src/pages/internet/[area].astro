@@ -70,6 +70,7 @@ export function getStaticPaths() {
   ];
   return areas.map((a) => ({ params: { area: a.area }, props: a }));
 }
+import Stars from "../../components/Stars.astro";
 const { name, status, title, desc, h1, intro, estates, pitch } = Astro.props;
 const SITE = "https://www.lightspacefiber.com";
 const url = `${SITE}/internet/${Astro.params.area}/`;
@@ -135,7 +136,9 @@ nav{position:sticky;top:0;z-index:50;background:rgba(10,18,20,.94);backdrop-filt
 .navlinks a:hover{color:#fff}
 .btn{display:inline-block;background:var(--teal);color:#fff;padding:13px 26px;border-radius:10px;font-weight:600;font-size:15px}
 .btn:hover{background:#0C6564}
-.hero{background:var(--night);color:#fff;padding:96px 0 88px}
+.hero{background:radial-gradient(ellipse at 72% 8%,rgba(92,184,178,.07),transparent 42%),linear-gradient(180deg,#04080A 0%,#081013 45%,#0B181C 75%,#12333A 100%),var(--night);color:#fff;padding:96px 0 88px;position:relative;overflow:hidden}
+.stars{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
 .crumb{font-size:13px;color:#7E9391;margin-bottom:18px}
 .crumb a{color:var(--teal-lt)}
 .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(92,184,178,.4);color:var(--teal-lt);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:500;margin-bottom:20px}
@@ -175,7 +178,7 @@ footer a{color:var(--teal-lt)}
   </div>
 </div></nav>
 
-<header class="hero"><div class="wrap">
+<header class="hero"><Stars /><div class="wrap">
   <div class="crumb"><a href="/">Home</a> / Internet in {name}</div>
   <div class="pill"><i></i>{statusLine}</div>
   <h1>{h1} — truly unlimited, fibre &amp; wireless.</h1>

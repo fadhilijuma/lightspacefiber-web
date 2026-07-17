@@ -1,4 +1,5 @@
 ---
+import Stars from '../components/Stars.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -231,7 +232,7 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
 </nav>
 
 <header class="hero" id="top">
-  <canvas class="stars" id="stars" aria-hidden="true"></canvas>
+  <Stars />
   <div class="wrap">
     <div class="herocopy">
       <div class="eyebrow" style="color:#5CB8B2">Unlimited internet · Fibre &amp; wireless</div>
@@ -536,72 +537,7 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
     });
   });
 
-  /* night sky — photographic density: thousands of tiny stars, none protrude */
-  (function(){
-    const cv = document.getElementById('stars');
-    if (!cv || !cv.getContext) return;
-    const hero = cv.closest('.hero');
-    function draw(){
-      const w = hero.clientWidth, h = hero.clientHeight;
-      const dpr = Math.min(2, window.devicePixelRatio || 1);
-      cv.width = w*dpr; cv.height = h*dpr;
-      const ctx = cv.getContext('2d');
-      ctx.scale(dpr, dpr);
-      let seed = 42; const rnd = () => (seed = (seed*9301+49297)%233280)/233280;
-      const overCopy = (x,y)=> x > w*.12 && x < w*.72 && y > h*.12 && y < h*.82;
 
-      /* milky-way cloud: soft luminous washes along a diagonal */
-      const bandPts = 26;
-      for (let i=0;i<bandPts;i++){
-        const t=i/bandPts;
-        const bx = w*.08 + t*w*.9 + (rnd()-.5)*w*.06;
-        const by = h*.08 + t*h*.5 + (rnd()-.5)*h*.10;
-        const rr = 60 + rnd()*150;
-        const g = ctx.createRadialGradient(bx,by,0,bx,by,rr);
-        g.addColorStop(0, 'rgba(205,230,227,0.028)');
-        g.addColorStop(1, 'rgba(205,230,227,0)');
-        ctx.fillStyle = g;
-        ctx.fillRect(bx-rr,by-rr,rr*2,rr*2);
-      }
-
-      function star(x,y,r,a,warm){
-        ctx.globalAlpha = a;
-        ctx.fillStyle = warm ? '#F2E7D5' : (rnd()<.3 ? '#D6E9F5' : '#E6F2F0');
-        ctx.beginPath(); ctx.arc(x,y,r,0,6.2832); ctx.fill();
-      }
-
-      /* base field — everywhere */
-      const baseN = Math.round(w*h/950);
-      for (let i=0;i<baseN;i++){
-        const x=rnd()*w, y=rnd()*h;
-        let a = .10 + Math.pow(rnd(),1.6)*.42;
-        if (overCopy(x,y)) a *= .55;
-        star(x, y, .35 + rnd()*.65, a, rnd()<.06);
-      }
-      /* milky-way dense band */
-      const bandN = Math.round(w*h/1900);
-      for (let i=0;i<bandN;i++){
-        const t=rnd();
-        const x = w*.08 + t*w*.9 + (rnd()-.5)*w*.16;
-        const y = h*.08 + t*h*.5 + (rnd()-.5)*h*.22;
-        if (x<0||x>w||y<0||y>h) continue;
-        let a = .08 + Math.pow(rnd(),1.4)*.38;
-        if (overCopy(x,y)) a *= .55;
-        star(x, y, .3 + rnd()*.55, a);
-      }
-      /* clearer pinpoints — small but present, like a long exposure */
-      const pinN = Math.round(w/9);
-      for (let i=0;i<pinN;i++){
-        const x=rnd()*w, y=rnd()*h;
-        let a = .45 + rnd()*.3;
-        if (overCopy(x,y)) a *= .5;
-        star(x, y, .7 + rnd()*.5, a);
-      }
-      ctx.globalAlpha = 1;
-    }
-    draw();
-    let rt; addEventListener('resize', ()=>{ clearTimeout(rt); rt=setTimeout(draw, 300); });
-  })();
 })();
 
 
