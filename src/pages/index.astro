@@ -64,11 +64,9 @@ nav{position:sticky;top:0;z-index:50;background:rgba(7,14,16,.92);backdrop-filte
 
 /* ---------- hero ---------- */
 .hero{background:radial-gradient(ellipse at 72% 8%,rgba(92,184,178,.07),transparent 42%),radial-gradient(ellipse at 25% 30%,rgba(15,123,122,.05),transparent 50%),linear-gradient(180deg,#04080A 0%,#081013 45%,#0B181C 75%,#12333A 100%),var(--night);color:#fff;position:relative;overflow:hidden}
-.stars{position:absolute;top:0;left:0;width:100%;height:72%;z-index:1;pointer-events:none}
-.stars circle{animation:twinkle 4s ease-in-out infinite}
+.stars{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 @keyframes twinkle{0%,100%{opacity:var(--o)}50%{opacity:calc(var(--o)*0.3)}}
-@media(prefers-reduced-motion: reduce){.stars circle{animation:none}}
-.hero .wrap{position:relative;z-index:2;padding-top:104px;padding-bottom:264px}
+.hero .wrap{position:relative;z-index:2;padding-top:120px;padding-bottom:150px}
 .pricemoment{margin:30px 0 34px}
 .pk{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(214,228,226,.55);font-family:'Space Grotesk',sans-serif}
 .pv{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,3.2vw,46px);font-weight:600;color:#EAF4F2;line-height:1.15;margin-top:2px}
@@ -81,11 +79,7 @@ nav{position:sticky;top:0;z-index:50;background:rgba(7,14,16,.92);backdrop-filte
 .covlink{color:var(--teal-lt);font-size:15.5px;font-weight:500}
 .covlink:hover{color:#fff}
 .hero p.lead{margin:22px 0 34px;font-size:clamp(17px,1.4vw,20px);color:#AFC2C0;max-width:580px}
-.skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:230px;z-index:1}
-.win{opacity:0;transition:opacity 1.1s ease-out}
-.win.on{opacity:1}
 .hero .horizon{position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--teal);z-index:2}
-@media (prefers-reduced-motion: reduce){.win{opacity:1;transition:none}}
 
 /* ---------- trust strip ---------- */
 .trust{background:rgba(255,255,255,.02);background-color:var(--night2);color:#8FA6A3}
@@ -203,7 +197,7 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
   .navlinks{display:none;position:absolute;top:66px;left:0;right:0;background:var(--night);flex-direction:column;padding:18px 22px;gap:16px;border-bottom:1px solid rgba(92,184,178,.2)}
   .navlinks.open{display:flex}
   .burger{display:block}
-  .hero .wrap{padding-top:56px;padding-bottom:190px}
+  .hero .wrap{padding-top:64px;padding-bottom:96px}
   .sechead{display:block}
   .sechead p{max-width:640px;justify-self:start}
   .faq{grid-template-columns:1fr;gap:0}
@@ -253,7 +247,6 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
       </div>
     </div>
   </div>
-  <svg class="skyline" id="skyline" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
   <div class="horizon"></div>
 </header>
 
@@ -542,135 +535,40 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
     });
   });
 
-  /* night sky — layered like a real one: dust everywhere, a milky-way band, few brights */
+  /* night sky — distant stars only, like a photograph: tiny, faint, still */
   (function(){
     const sk = document.getElementById('stars');
     if (!sk) return;
     let seed2 = 42; const rnd2 = () => (seed2 = (seed2*9301+49297)%233280)/233280;
-    sk.setAttribute('viewBox','0 0 1200 500');
-    let st = '<defs><radialGradient id="neb"><stop offset="0%" stop-color="#5CB8B2" stop-opacity=".05"/><stop offset="100%" stop-color="#5CB8B2" stop-opacity="0"/></radialGradient></defs>';
-    st += '<ellipse cx="820" cy="140" rx="330" ry="150" fill="url(#neb)"/>';
-    st += '<ellipse cx="300" cy="60" rx="260" ry="110" fill="url(#neb)"/>';
-    const inCopy = (x,y)=> x>140 && x<900 && y>55 && y<445;
-    /* dust — faint texture; kept extra-dim over the copy block */
-    for (let i=0;i<340;i++){
-      const x=rnd2()*1200, y=rnd2()*470;
-      const o=(inCopy(x,y) ? .05+rnd2()*.05 : .06+rnd2()*.16).toFixed(2);
-      st+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(.3+rnd2()*.45).toFixed(2)}" fill="#CFE6E4" style="opacity:${o};animation:none"/>`;
+    sk.setAttribute('viewBox','0 0 1200 640');
+    let st = '<defs><radialGradient id="neb"><stop offset="0%" stop-color="#5CB8B2" stop-opacity=".045"/><stop offset="100%" stop-color="#5CB8B2" stop-opacity="0"/></radialGradient></defs>';
+    st += '<ellipse cx="850" cy="180" rx="380" ry="190" fill="url(#neb)"/>';
+    st += '<ellipse cx="260" cy="80" rx="280" ry="130" fill="url(#neb)"/>';
+    const overCopy = (x,y)=> x>140 && x<900 && y>60 && y<520;
+    /* base field */
+    for (let i=0;i<520;i++){
+      const x=rnd2()*1200, y=rnd2()*640;
+      const dim = overCopy(x,y);
+      const o=(dim ? .04+rnd2()*.06 : .08+rnd2()*.22).toFixed(2);
+      st+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(.3+rnd2()*.5).toFixed(2)}" fill="#CFE6E4" opacity="${o}"/>`;
     }
-    /* milky-way band — extra dust along a diagonal */
-    for (let i=0;i<190;i++){
-      const t=rnd2(); const bx=140+t*1000, by=40+t*260;
-      const x=bx+(rnd2()-.5)*230, y=by+(rnd2()-.5)*130;
-      if (y<0||y>470) continue;
-      const o=(.05+rnd2()*.18).toFixed(2);
-      st+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(.3+rnd2()*.4).toFixed(2)}" fill="#D8ECE9" style="opacity:${o};animation:none"/>`;
+    /* milky-way density band */
+    for (let i=0;i<260;i++){
+      const t=rnd2(); const bx=120+t*1030, by=60+t*330;
+      const x=bx+(rnd2()-.5)*260, y=by+(rnd2()-.5)*150;
+      if (y<0||y>640) continue;
+      const dim = overCopy(x,y);
+      const o=(dim ? .04+rnd2()*.05 : .06+rnd2()*.2).toFixed(2);
+      st+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(.3+rnd2()*.4).toFixed(2)}" fill="#D8ECE9" opacity="${o}"/>`;
     }
-    /* mids — kept out of the copy block */
-    let tw=0;
-    for (let i=0;i<90;i++){
-      const x=rnd2()*1200, y=rnd2()*440;
-      if (inCopy(x,y)) continue;
-      const o=(.25+rnd2()*.22).toFixed(2);
-      const anim = (tw<10 && rnd2()<.3) ? (tw++, `animation-duration:${(4+rnd2()*4).toFixed(1)}s;animation-delay:${(-rnd2()*6).toFixed(1)}s`) : 'animation:none';
-      st+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(.7+rnd2()*.5).toFixed(2)}" fill="#DDEEEB" style="--o:${o};opacity:${o};${anim}"/>`;
-    }
-    /* brights — the few that matter */
-    for (let i=0;i<9;i++){
-      const x=rnd2()*1200, y=rnd2()*400;
-      if (inCopy(x,y)) continue;
-      const r=(1.15+rnd2()*.5);
-      st+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(r*2.4).toFixed(2)}" fill="#EAF4F2" opacity="0.06"/>`;
-      st+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(2)}" fill="#EAF4F2" style="--o:.75;opacity:.75;animation-duration:${(5+rnd2()*3).toFixed(1)}s;animation-delay:${(-rnd2()*5).toFixed(1)}s"/>`;
+    /* slightly clearer pinpoints — still small, still background */
+    for (let i=0;i<70;i++){
+      const x=rnd2()*1200, y=rnd2()*640;
+      if (overCopy(x,y)) continue;
+      st+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(.6+rnd2()*.35).toFixed(2)}" fill="#DDEEEB" opacity="${(.28+rnd2()*.18).toFixed(2)}"/>`;
     }
     sk.innerHTML = st;
   })();
-
-  /* the city — one composed silhouette: towers and low-rises on a shared ground */
-  const svg = document.getElementById('skyline');
-  const H = 230;
-  const timers = [];
-  const later = (fn,t)=> timers.push(setTimeout(fn,t));
-  const clearAll = ()=>{ while(timers.length) clearTimeout(timers.pop()); };
-  let builtW = 0;
-
-  function initSkyline(){
-    clearAll();
-    const W = Math.max(320, Math.ceil(svg.clientWidth || innerWidth));
-    builtW = W;
-    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-    let seed = 5; const rnd = () => (seed = (seed*9301+49297)%233280)/233280;
-
-    /* designed rhythm, repeated to fill: low - tall - mid - low - TALLEST - mid ... */
-    const pattern = [
-      {h:.34,w:96},{h:.78,w:64},{h:.5,w:120},{h:.3,w:88},{h:.94,w:74},
-      {h:.56,w:110},{h:.4,w:84},{h:.7,w:68},{h:.32,w:126},{h:.6,w:92}
-    ];
-    const maxH = 196, minH = 58;
-    let out = '', x = -14, pi = 0;
-    const bldgs = [];
-    while (x < W + 20){
-      const p = pattern[pi % pattern.length]; pi++;
-      const jw = p.w * (0.9 + rnd()*0.25);
-      const jh = minH + (maxH-minH) * p.h * (0.92 + rnd()*0.16);
-      bldgs.push({x, w:jw, h:Math.min(jh, maxH)});
-      x += jw + (rnd()<.25 ? -8 : 4 + rnd()*26);
-    }
-    const tallest = bldgs.reduce((a,b)=> b.h>a.h?b:a);
-    const tones = ['#0C171A','#0D191D','#0B1518'];
-    bldgs.forEach((b,bi)=>{
-      const tone = tones[bi % tones.length];
-      out += `<rect x="${b.x.toFixed(1)}" y="${(H-b.h).toFixed(1)}" width="${b.w.toFixed(1)}" height="${b.h.toFixed(1)}" fill="${tone}"/>`;
-      /* rooftop character: parapet step or water tank on some */
-      const roofY = H - b.h;
-      const dice = rnd();
-      if (dice < .3 && b.w > 80){
-        out += `<rect x="${(b.x+b.w*.18).toFixed(1)}" y="${(roofY-7).toFixed(1)}" width="${(b.w*.3).toFixed(1)}" height="7" fill="${tone}"/>`;
-      } else if (dice < .5 && b.w > 70){
-        out += `<rect x="${(b.x+b.w*.62).toFixed(1)}" y="${(roofY-11).toFixed(1)}" width="13" height="11" fill="${tone}"/>`;
-        out += `<rect x="${(b.x+b.w*.62-2).toFixed(1)}" y="${(roofY-13).toFixed(1)}" width="17" height="2.5" fill="${tone}"/>`;
-      }
-    });
-    /* mast with its light on the tallest tower */
-    const mx = tallest.x + tallest.w*0.5;
-    out += `<rect x="${mx.toFixed(1)}" y="${(H-tallest.h-30).toFixed(1)}" width="2.6" height="30" fill="#0D191D"/>`;
-    out += `<circle class="win" data-i="99" cx="${(mx+1.3).toFixed(1)}" cy="${(H-tallest.h-33).toFixed(1)}" r="2.2" fill="#FFB224"/>`;
-    /* ground line ties the city together */
-    out += `<rect x="0" y="${H-3}" width="${W}" height="3" fill="#0D191D"/>`;
-
-    /* windows: lit ones only — small warm rectangles, ~2 per 90px of skyline */
-    let winCount = 0; const budget = Math.min(26, Math.round(W/70));
-    const shuffled = bldgs.slice().sort(()=>rnd()-.5);
-    shuffled.forEach(b=>{
-      if (winCount >= budget || b.h < 70 || rnd() < .25) return;
-      const k = 1 + Math.floor(rnd()*3);
-      for (let j=0;j<k && winCount<budget;j++){
-        const wx = b.x + 12 + rnd()*(b.w-26);
-        const wy = H - b.h + 14 + rnd()*(b.h-34);
-        out += `<circle class="win" data-i="${winCount}" cx="${(wx+2).toFixed(1)}" cy="${(wy+2.6).toFixed(1)}" r="6.5" fill="#FFB224" opacity="0" data-halo="1"/>`;
-        out += `<rect class="win" data-i="${winCount}" x="${wx.toFixed(1)}" y="${wy.toFixed(1)}" width="4.2" height="5.4" rx="1" fill="#FFC85A"/>`;
-        winCount++;
-      }
-    });
-    svg.innerHTML = out;
-
-    const wins = Array.from(svg.querySelectorAll('.win'));
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced){ wins.forEach(w=>{ w.style.opacity = w.dataset.halo ? .14 : 1; }); return; }
-
-    /* ignition: one by one, then the city holds its light */
-    const order = [...new Set(wins.map(w=>+w.dataset.i))].sort(()=>rnd()-.5);
-    order.forEach((idx,k)=> later(()=>{
-      wins.filter(w=>+w.dataset.i===idx).forEach(w=>{ w.style.opacity = w.dataset.halo ? .14 : 1; });
-    }, 700 + k*(520 + rnd()*180)));
-  }
-
-  initSkyline();
-  let rto;
-  addEventListener('resize', ()=>{
-    clearTimeout(rto);
-    rto = setTimeout(()=>{ if (Math.abs((svg.clientWidth||innerWidth) - builtW) > 60) initSkyline(); }, 350);
-  });
 })();
 
 
