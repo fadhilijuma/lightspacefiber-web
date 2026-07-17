@@ -41,7 +41,7 @@ html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px}
 h1,h2,h3,.sg{font-family:'Space Grotesk',sans-serif}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,4vw,48px)}
+.wrap{max-width:1440px;margin:0 auto;padding:0 clamp(22px,4vw,56px)}
 .eyebrow{font-family:'Space Grotesk';font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);font-weight:500}
 .btn{display:inline-block;background:var(--teal);color:#fff;padding:13px 26px;border-radius:10px;font-weight:600;font-size:15px;border:none;cursor:pointer;transition:background .2s}
 .btn:hover{background:#0C6564}
@@ -63,7 +63,12 @@ nav{position:sticky;top:0;z-index:50;background:rgba(10,18,20,.92);backdrop-filt
 
 /* ---------- hero ---------- */
 .hero{background:linear-gradient(180deg,#070E10 0%, #0A1214 55%, #0F2A2E 88%, #14444478 100%),var(--night);color:#fff;position:relative;overflow:hidden}
-.hero .wrap{position:relative;z-index:2;padding-top:84px;padding-bottom:210px}
+.hero .wrap{position:relative;z-index:2;padding-top:84px;padding-bottom:210px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.8fr);gap:70px;align-items:center}
+.herostats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hstat{border:1px solid rgba(92,184,178,.25);background:rgba(14,24,27,.6);backdrop-filter:blur(6px);border-radius:16px;padding:24px 22px}
+.hstat b{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,2.3vw,38px);color:var(--teal-lt);display:block;font-weight:600;line-height:1.1}
+.hstat:first-child b{color:var(--amber)}
+.hstat span{font-size:13px;color:#8FA6A3;line-height:1.5;display:block;margin-top:7px}
 .hero h1{font-size:clamp(38px,6vw,72px);line-height:1.05;font-weight:600;max-width:800px;letter-spacing:-0.01em}
 .hero h1 em{font-style:normal;color:var(--teal-lt)}
 .hero p.lead{margin:22px 0 34px;font-size:clamp(17px,1.4vw,20px);color:#AFC2C0;max-width:580px}
@@ -80,7 +85,10 @@ nav{position:sticky;top:0;z-index:50;background:rgba(10,18,20,.92);backdrop-filt
 
 /* ---------- sections ---------- */
 section{padding:84px 0}
-.sechead{max-width:720px;margin-bottom:44px}
+.sechead{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);column-gap:90px;align-items:end;max-width:none;margin-bottom:48px}
+.sechead .eyebrow{grid-column:1/-1;margin-bottom:6px}
+.sechead h2{grid-column:1}
+.sechead p{grid-column:2;justify-self:end;max-width:560px;width:100%}
 .sechead h2{font-size:clamp(28px,4vw,38px);font-weight:600;line-height:1.15;margin:10px 0 12px}
 .sechead p{color:var(--muted)}
 
@@ -122,7 +130,7 @@ section{padding:84px 0}
 .honest{background:var(--night);color:#fff}
 .honest .eyebrow{color:var(--teal-lt)}
 .honest .sechead p{color:#8FA6A3}
-.fine{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(92,184,178,.25);border-radius:18px;overflow:hidden;max-width:1000px}
+.fine{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(92,184,178,.25);border-radius:18px;overflow:hidden;max-width:none}
 .fine>div{padding:30px 32px}
 .fine .them{background:rgba(255,255,255,.03);border-right:1px solid rgba(92,184,178,.25)}
 .fine h3{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#7E9391;font-weight:500;margin-bottom:18px}
@@ -166,13 +174,13 @@ section{padding:84px 0}
 @media(max-width:820px){.biz .wrap{grid-template-columns:1fr}}
 
 /* ---------- faq ---------- */
-.faq{max-width:860px}
+.faq{max-width:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 84px;align-items:start}
 details{border-bottom:1px solid var(--line);padding:20px 0}
 summary{cursor:pointer;font-family:'Space Grotesk';font-weight:500;font-size:17px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
 summary::-webkit-details-marker{display:none}
 summary:after{content:"+";font-size:22px;color:var(--teal);flex-shrink:0}
 details[open] summary:after{content:"–"}
-details p{margin-top:12px;color:var(--muted);font-size:15px;max-width:640px}
+details p{margin-top:12px;color:var(--muted);font-size:15px}
 
 /* ---------- footer ---------- */
 footer{background:var(--night);color:#8FA6A3;padding:56px 0 40px;font-size:14px}
@@ -186,7 +194,10 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
   .navlinks{display:none;position:absolute;top:66px;left:0;right:0;background:var(--night);flex-direction:column;padding:18px 22px;gap:16px;border-bottom:1px solid rgba(92,184,178,.2)}
   .navlinks.open{display:flex}
   .burger{display:block}
-  .hero .wrap{padding-top:56px;padding-bottom:180px}
+  .hero .wrap{padding-top:56px;padding-bottom:180px;grid-template-columns:1fr;gap:44px}
+  .sechead{display:block}
+  .sechead p{max-width:640px;justify-self:start}
+  .faq{grid-template-columns:1fr;gap:0}
   section{padding:60px 0}
 }
 </style>
@@ -217,12 +228,20 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
 
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="eyebrow" style="color:#5CB8B2">Unlimited internet · Fibre &amp; wireless</div>
-    <h1>The night your home <em>comes online.</em></h1>
-    <p class="lead">Truly unlimited internet for your home or business. No fair-usage fine print, no surprises. Installed fast, countrywide.</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a class="btn" href="#plans">See plans</a>
-      <a class="btn ghost" style="border-color:rgba(92,184,178,.5);color:#5CB8B2" href="https://wa.me/254700000000?text=Habari!%20I%27d%20like%20to%20get%20connected.">WhatsApp us</a>
+    <div class="herocopy">
+      <div class="eyebrow" style="color:#5CB8B2">Unlimited internet · Fibre &amp; wireless</div>
+      <h1>The night your home <em>comes online.</em></h1>
+      <p class="lead">Truly unlimited internet for your home or business. No fair-usage fine print, no surprises. Installed fast, countrywide.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn" href="#plans">See plans</a>
+        <a class="btn ghost" style="border-color:rgba(92,184,178,.5);color:#5CB8B2" href="https://wa.me/254729267328?text=Habari!%20I%27d%20like%20to%20get%20connected.">WhatsApp us</a>
+      </div>
+    </div>
+    <div class="herostats">
+      <div class="hstat"><b>&#8734;</b><span>No usage cap — unlimited means unlimited, all month</span></div>
+      <div class="hstat"><b>24 hrs</b><span>From order to online — fibre drop or rooftop radio</span></div>
+      <div class="hstat"><b>99.9%</b><span>Uptime on our multihomed fibre backbone</span></div>
+      <div class="hstat"><b>KES 999</b><span>Truly unlimited home internet, from /month</span></div>
     </div>
   </div>
   <svg class="skyline" id="skyline" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
@@ -255,28 +274,28 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
         <div class="speed">50<small> Mbps</small></div>
         <div class="price">KES 999<small> /month</small></div>
         <ul><li>Streaming and browsing for the home</li><li>Unlimited data, no FUP</li><li>Free standard installation</li></ul>
-        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Cheche%2050%20Mbps%20home%20plan.">Get Cheche</a>
+        <a class="btn" href="https://wa.me/254729267328?text=Habari!%20I%20want%20the%20Cheche%2050%20Mbps%20home%20plan.">Get Cheche</a>
       </div><div class="plan pop">
         <div class="badge">Most popular</div>
         <div class="pname"><i></i>Mwenge</div>
         <div class="speed">150<small> Mbps</small></div>
         <div class="price">KES 1,899<small> /month</small></div>
         <ul><li>4K streaming on several devices</li><li>Work-from-home ready</li><li>Unlimited data, no FUP</li><li>Free standard installation</li></ul>
-        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Mwenge%20150%20Mbps%20home%20plan.">Get Mwenge</a>
+        <a class="btn" href="https://wa.me/254729267328?text=Habari!%20I%20want%20the%20Mwenge%20150%20Mbps%20home%20plan.">Get Mwenge</a>
       </div><div class="plan">
         
         <div class="pname"><i></i>Jua</div>
         <div class="speed">300<small> Mbps</small></div>
         <div class="price">KES 3,999<small> /month</small></div>
         <ul><li>Gaming, creators and heavy households</li><li>Priority support line</li><li>Unlimited data, no FUP</li></ul>
-        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Jua%20300%20Mbps%20home%20plan.">Get Jua</a>
+        <a class="btn" href="https://wa.me/254729267328?text=Habari!%20I%20want%20the%20Jua%20300%20Mbps%20home%20plan.">Get Jua</a>
       </div><div class="plan">
         
         <div class="pname"><i></i>Radi</div>
         <div class="speed">1<small> Gbps</small></div>
         <div class="price">KES 8,999<small> /month</small></div>
         <ul><li>Everything, all at once, for everyone</li><li>Priority support line</li><li>Unlimited data, no FUP</li></ul>
-        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Radi%201%20Gbps%20home%20plan.">Get Radi</a>
+        <a class="btn" href="https://wa.me/254729267328?text=Habari!%20I%20want%20the%20Radi%201%20Gbps%20home%20plan.">Get Radi</a>
       </div></div>
     <div class="plans pgrid" id="grid-biz"><div class="plan">
         
@@ -284,28 +303,28 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
         <div class="speed">50<small> Mbps</small></div>
         <div class="price">KES 2,999<small> /month</small></div>
         <ul><li>Small offices and shops</li><li>Static IP included</li><li>Business-hours SLA</li><li>Unlimited data, no FUP</li></ul>
-        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Cheche%20Biz%2050%20Mbps%20plan.">Get Cheche Biz</a>
+        <a class="btn" href="https://wa.me/254729267328?text=Habari!%20I%20want%20the%20Cheche%20Biz%2050%20Mbps%20plan.">Get Cheche Biz</a>
       </div><div class="plan pop">
         <div class="badge">Most popular</div>
         <div class="pname"><i></i>Mwenge Biz</div>
         <div class="speed">150<small> Mbps</small></div>
         <div class="price">KES 4,499<small> /month</small></div>
         <ul><li>Growing teams and multiple outlets</li><li>Static IP included</li><li>99.9% uptime SLA</li><li>Priority business support</li></ul>
-        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Mwenge%20Biz%20150%20Mbps%20plan.">Get Mwenge Biz</a>
+        <a class="btn" href="https://wa.me/254729267328?text=Habari!%20I%20want%20the%20Mwenge%20Biz%20150%20Mbps%20plan.">Get Mwenge Biz</a>
       </div><div class="plan">
         
         <div class="pname"><i></i>Jua Biz</div>
         <div class="speed">300<small> Mbps</small></div>
         <div class="price">KES 6,999<small> /month</small></div>
         <ul><li>Offices, schools, SACCOs, hotels</li><li>Static IP + VLANs</li><li>99.9% uptime SLA</li><li>Same-day on-site response</li></ul>
-        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Jua%20Biz%20300%20Mbps%20plan.">Get Jua Biz</a>
+        <a class="btn" href="https://wa.me/254729267328?text=Habari!%20I%20want%20the%20Jua%20Biz%20300%20Mbps%20plan.">Get Jua Biz</a>
       </div><div class="plan">
         
         <div class="pname"><i></i>Radi Biz</div>
         <div class="speed">1<small> Gbps</small></div>
         <div class="price">KES 14,999<small> /month</small></div>
         <ul><li>Bandwidth-heavy operations</li><li>Static IPs + VLANs</li><li>99.9% uptime SLA</li><li>Dedicated account engineer</li></ul>
-        <a class="btn" href="https://wa.me/254700000000?text=Habari!%20I%20want%20the%20Radi%20Biz%201%20Gbps%20plan.">Talk to us</a>
+        <a class="btn" href="https://wa.me/254729267328?text=Habari!%20I%20want%20the%20Radi%20Biz%201%20Gbps%20plan.">Talk to us</a>
       </div></div>
 
     <div class="custom">
@@ -393,7 +412,7 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
         <li>Service-level agreement with response-time commitments</li>
         <li>An engineer who answers — local, not a call centre</li>
       </ul>
-      <a class="btn ghost" href="https://wa.me/254700000000?text=Habari!%20I%27d%20like%20a%20Biashara%20quote.">Request a quote</a>
+      <a class="btn ghost" href="https://wa.me/254729267328?text=Habari!%20I%27d%20like%20a%20Biashara%20quote.">Request a quote</a>
     </div>
     <div class="bizart">
       <div class="big">99.9%</div>
@@ -472,19 +491,19 @@ footer .legal{border-top:1px solid rgba(92,184,178,.15);padding-top:24px;font-si
         </div>
       <div class="col">
         <h4>Support</h4>
-        <a href="https://wa.me/254700000000">WhatsApp us</a>
-        <a href="tel:+254700000000">0700 000 000</a>
-        <a href="mailto:habari@lightspace.africa">habari@lightspace.africa</a>
+        <a href="https://wa.me/254729267328">WhatsApp us</a>
+        <a href="tel:+254729267328">0729 267 328</a>
+        <a href="mailto:support@lightspacefiber.com">support@lightspacefiber.com</a>
       </div>
       <div class="col">
         <h4>Pay</h4>
-        <a>M-Pesa Paybill: 000000</a>
+        <a>M-Pesa paybill shared at sign-up</a>
         <a>Account: your phone number</a>
       </div>
     </div>
     <div class="legal">
       <span>© 2026 Lightspace Wireless Ltd. Licensed by the Communications Authority of Kenya.</span>
-      <span>Kenya · lightspace.africa</span>
+      <span>Kenya · lightspacefiber.com</span>
     </div>
   </div>
 </footer>
@@ -605,7 +624,7 @@ function bwCalc(){
   document.getElementById('bwv').textContent=v;
   document.getElementById('bwp').textContent=p.toLocaleString();
   const seg=planMode==='biz'?'business':'home';
-  document.getElementById('bwcta').href='https://wa.me/254700000000?text='+encodeURIComponent(`Habari! I'd like a custom ${seg} plan: ${v} Mbps at about KES ${p.toLocaleString()}/month.`);
+  document.getElementById('bwcta').href='https://wa.me/254729267328?text='+encodeURIComponent(`Habari! I'd like a custom ${seg} plan: ${v} Mbps at about KES ${p.toLocaleString()}/month.`);
 }
 bwCalc();
 </script>
