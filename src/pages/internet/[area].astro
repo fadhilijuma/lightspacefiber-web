@@ -1,0 +1,220 @@
+---
+export function getStaticPaths() {
+  const areas = [
+    {
+      area: "roysambu",
+      name: "Roysambu",
+      status: "live",
+      title: "Unlimited Internet in Roysambu — Fibre & Wireless WiFi | Lightspace",
+      desc: "Truly unlimited home & business internet in Roysambu, Nairobi. Fibre and wireless WiFi with no FUP, from KES 999/month. Installed within 24 hours — we're based right here on USIU Road.",
+      h1: "Unlimited internet in Roysambu",
+      intro: "Roysambu is our home turf — Lightspace is headquartered at Safari Park Arcade on USIU Road, so when your connection needs us, we are minutes away, not a call centre away. We deliver truly unlimited fibre and wireless internet across the estates off Thika Road and Kamiti Road, with no fair-usage policy and no speed cuts mid-month.",
+      estates: ["Mirema Drive", "Zimmerman", "Garden Estate", "TRM area", "USIU Road", "Kahawa Sukari fringe", "Lumumba Drive", "Seasons boundary"],
+      pitch: "Whether you're in a high-rise on Mirema Drive or a maisonette in Garden Estate, we install fibre where our routes pass and a rooftop wireless link where they don't yet — same unlimited plans either way, from KES 999/month.",
+    },
+    {
+      area: "kasarani",
+      name: "Kasarani",
+      status: "live",
+      title: "Unlimited Internet in Kasarani — Fibre & Wireless WiFi | Lightspace",
+      desc: "Unlimited home & business internet in Kasarani, Nairobi — Seasons, Sunton, Mwiki, Clay City and Hunters. No FUP, from KES 999/month, installed within 24 hours.",
+      h1: "Unlimited internet in Kasarani",
+      intro: "From Seasons to Mwiki, Kasarani's estates are full of homes and businesses paying for “unlimited” internet that slows to a crawl after a hidden cap. Lightspace is different by design: truly unlimited fibre and wireless internet with no fair-usage policy, delivered from our own backbone just down Thika Road in Roysambu.",
+      estates: ["Seasons", "Sunton", "Hunters", "Mwiki", "Clay City", "Sportsview", "Deliverance", "Maternity area"],
+      pitch: "Dense plots and high-rises are our speciality — a book-sized rooftop radio or a fibre drop, confirmed at full speed before the technician leaves. Plans start at KES 999/month, paid by M-Pesa, no contract.",
+    },
+    {
+      area: "ruiru",
+      name: "Ruiru",
+      status: "expanding",
+      title: "Unlimited Internet in Ruiru & Kamakis — Fibre & Wireless | Lightspace",
+      desc: "Truly unlimited internet arriving across Ruiru — Membley, Kamakis, Kimbo and Gatong'ora. No FUP, from KES 999/month. WhatsApp us to check availability on your street.",
+      h1: "Unlimited internet in Ruiru",
+      intro: "Ruiru is growing faster than its internet options. As we extend our network up Thika Road and along the Eastern Bypass, Lightspace brings the same truly-unlimited service our Nairobi customers get — no fair-usage policy, no evening slowdowns, no surprises on the 20th of the month.",
+      estates: ["Membley", "Kamakis (Eastern Bypass)", "Kimbo", "Gatong'ora", "Kihunguro", "Toll area", "Gwa Kairu", "Mugutha"],
+      pitch: "We are switching on new sites in Ruiru every month. WhatsApp us your estate and plot — if we're live on your street we install within 24 hours, and if not, your request literally moves Ruiru up our build plan.",
+    },
+    {
+      area: "kiambu",
+      name: "Kiambu",
+      status: "expanding",
+      title: "Unlimited Internet in Kiambu & Thindigua — Fibre & Wireless | Lightspace",
+      desc: "Unlimited home & business internet reaching Kiambu Town, Thindigua, Ndumberi and Kirigiti. No FUP, from KES 999/month. Check availability on WhatsApp.",
+      h1: "Unlimited internet in Kiambu",
+      intro: "From the apartments of Thindigua along Kiambu Road to Kiambu Town itself, reliable unlimited internet is still the exception. Lightspace is extending its fibre-backed wireless network into Kiambu with the same promise we make everywhere: unlimited means unlimited — no fair-usage fine print.",
+      estates: ["Thindigua", "Kiambu Town", "Ndumberi", "Kirigiti", "Riabai", "Cianda", "Kanunga", "Runda Mhasibu fringe"],
+      pitch: "Business parks, apartments and family homes — one honest price for truly unlimited service, installed fast. WhatsApp your location and we'll confirm availability the same day.",
+    },
+    {
+      area: "thika",
+      name: "Thika",
+      status: "soon",
+      title: "Unlimited Internet in Thika — Fibre & Wireless WiFi | Lightspace",
+      desc: "Truly unlimited internet coming to Thika — Makongeni, Ngoingwa, Section 9 and Landless. No FUP, from KES 999/month. Join the waitlist on WhatsApp and move your estate up the plan.",
+      h1: "Unlimited internet in Thika",
+      intro: "Thika is on our build plan, and demand decides the order we switch estates on. Lightspace delivers truly unlimited fibre and wireless internet — no fair-usage policy, no speed cuts — and Makongeni, Ngoingwa and Landless are next in line as our network extends up Thika Road.",
+      estates: ["Makongeni", "Ngoingwa", "Section 9", "Landless", "Thika Greens", "Kiganjo", "Kenyatta Road", "Juja fringe"],
+      pitch: "WhatsApp us your estate to join the Thika waitlist — areas with the most requests get built first, and waitlisted customers get priority installation and launch pricing when we switch on.",
+    },
+    {
+      area: "nakuru",
+      name: "Nakuru",
+      status: "soon",
+      title: "Unlimited Internet in Nakuru — Fibre & Wireless WiFi | Lightspace",
+      desc: "Truly unlimited internet coming to Nakuru City — Milimani, Section 58, Naka and London. No FUP, from KES 999/month. Join the waitlist on WhatsApp.",
+      h1: "Unlimited internet in Nakuru",
+      intro: "Nakuru City is the first stop on our expansion beyond the Nairobi metropolitan area. Lightspace brings truly unlimited fibre and wireless internet — the same no-FUP promise our Nairobi customers rely on — to Milimani, Section 58, Naka and the estates around the CBD.",
+      estates: ["Milimani", "Section 58", "Naka", "London", "Shabab", "Free Area", "Kiamunyi", "Pipeline (Nakuru)"],
+      pitch: "Join the Nakuru waitlist on WhatsApp — the estates with the most requests are switched on first, and early sign-ups get launch pricing and priority installation.",
+    },
+  ];
+  return areas.map((a) => ({ params: { area: a.area }, props: a }));
+}
+const { name, status, title, desc, h1, intro, estates, pitch } = Astro.props;
+const SITE = "https://www.lightspacefiber.com";
+const url = `${SITE}/internet/${Astro.params.area}/`;
+const wa = `https://wa.me/254729267328?text=${encodeURIComponent(`Hi Lightspace! I'd like internet in ${name}. My estate is: `)}`;
+const statusLine =
+  status === "live" ? "Live now — installation within 24 hours" :
+  status === "expanding" ? "Switching on new streets now" :
+  "Coming soon — join the waitlist";
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "InternetServiceProvider",
+  name: "Lightspace Wireless Limited",
+  url,
+  telephone: "+254729267328",
+  email: "support@lightspacefiber.com",
+  address: { "@type": "PostalAddress", streetAddress: "Safari Park Arcade, USIU Road, Roysambu", addressLocality: "Nairobi", addressCountry: "KE" },
+  areaServed: { "@type": "Place", name: `${name}, Kenya` },
+  priceRange: "From KES 999/month",
+};
+const crumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Lightspace", item: SITE + "/" },
+    { "@type": "ListItem", position: 2, name: `Internet in ${name}`, item: url },
+  ],
+};
+const others = ["roysambu","kasarani","ruiru","kiambu","thika","nakuru"].filter(a => a !== Astro.params.area);
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content={desc}>
+<link rel="canonical" href={url}>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0A1214">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lightspace Wireless">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={desc}>
+<meta property="og:url" content={url}>
+<meta property="og:image" content={`${SITE}/og.png`}>
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json" set:html={JSON.stringify(ld)}></script>
+<script type="application/ld+json" set:html={JSON.stringify(crumbs)}></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style is:global>
+:root{--night:#0A1214;--teal:#0F7B7A;--teal-lt:#5CB8B2;--amber:#FFB224;--paper:#FBFAF7;--ink:#101B1F;--line:#E3E0D7;--muted:#5B6A6D}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;font-size:16px}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(22px,4vw,48px)}
+nav{position:sticky;top:0;z-index:50;background:rgba(10,18,20,.94);backdrop-filter:blur(10px)}
+.navin{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px}
+.navlinks a{color:#B9C7C5;font-size:14.5px;margin-left:22px}
+.navlinks a:hover{color:#fff}
+.btn{display:inline-block;background:var(--teal);color:#fff;padding:13px 26px;border-radius:10px;font-weight:600;font-size:15px}
+.btn:hover{background:#0C6564}
+.hero{background:var(--night);color:#fff;padding:72px 0 64px}
+.crumb{font-size:13px;color:#7E9391;margin-bottom:18px}
+.crumb a{color:var(--teal-lt)}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(92,184,178,.4);color:var(--teal-lt);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:500;margin-bottom:20px}
+.pill i{width:8px;height:8px;border-radius:4px;background:var(--amber)}
+.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.08;max-width:820px;letter-spacing:-.01em}
+.hero p{margin:20px 0 30px;color:#AFC2C0;max-width:680px;font-size:17.5px}
+section{padding:64px 0}
+h2{font-size:clamp(24px,3vw,32px);margin-bottom:18px;color:var(--ink)}
+.estates{display:flex;flex-wrap:wrap;gap:10px;max-width:920px;margin:8px 0 26px}
+.estate{border:1.5px solid var(--line);background:#fff;border-radius:24px;padding:9px 18px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px}
+.estate i{width:7px;height:7px;border-radius:4px;background:var(--amber)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;max-width:1000px}
+.plan{border:1.5px solid var(--line);border-radius:16px;padding:22px;background:#fff}
+.plan .nm{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--muted)}
+.plan .pr{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:600;margin:6px 0 2px}
+.plan .pr small{font-size:13px;color:var(--muted);font-weight:400}
+.plan .sp{font-size:13.5px;color:var(--muted)}
+.cta{background:var(--night);color:#fff;border-radius:20px;padding:44px clamp(24px,4vw,56px);display:flex;justify-content:space-between;align-items:center;gap:26px;flex-wrap:wrap}
+.cta h2{color:#fff}
+.cta p{color:#AFC2C0;max-width:520px}
+.more{font-size:14.5px;color:var(--muted)}
+.more a{color:var(--teal);font-weight:500}
+footer{background:var(--night);color:#7E9391;padding:34px 0;font-size:13.5px}
+footer a{color:var(--teal-lt)}
+@media(max-width:700px){.navlinks a:not(.btn){display:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap navin">
+  <a class="logo" href="/">
+    <svg width="30" height="30" viewBox="-22 -22 44 44" aria-hidden="true"><path d="M 15.68 -5.45 A 16.6 16.6 0 1 1 5.45 -15.68" fill="none" stroke="#5CB8B2" stroke-width="6.8"/><circle cx="11.74" cy="-11.74" r="4.42" fill="#FFB224"/></svg>
+    lightspace
+  </a>
+  <div class="navlinks">
+    <a href="/#plans">Plans</a><a href="/#business">Business</a><a href="/#faq">FAQ</a>
+    <a class="btn" href={wa} style="padding:9px 18px;font-size:14px">Get connected</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="crumb"><a href="/">Home</a> / Internet in {name}</div>
+  <div class="pill"><i></i>{statusLine}</div>
+  <h1>{h1} — truly unlimited, fibre &amp; wireless.</h1>
+  <p>{intro}</p>
+  <a class="btn" href={wa}>WhatsApp us — check your street</a>
+</div></header>
+
+<section><div class="wrap">
+  <h2>Where we connect in {name}</h2>
+  <div class="estates">
+    {estates.map((e) => <div class="estate"><i></i>{e}</div>)}
+  </div>
+  <p style="max-width:760px">{pitch}</p>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2>Home plans in {name}</h2>
+  <div class="pgrid">
+    <div class="plan"><div class="nm">Starter</div><div class="pr">KES 999<small>/month</small></div><div class="sp">Unlimited &middot; everyday browsing &amp; streaming</div></div>
+    <div class="plan"><div class="nm">Family</div><div class="pr">KES 1,899<small>/month</small></div><div class="sp">Unlimited &middot; multiple screens, WFH &amp; gaming</div></div>
+    <div class="plan"><div class="nm">Power</div><div class="pr">KES 3,999<small>/month</small></div><div class="sp">Unlimited &middot; heavy households &amp; creators</div></div>
+    <div class="plan"><div class="nm">Business</div><div class="pr">from KES 2,999<small>/month</small></div><div class="sp">Priority support &amp; static IP options</div></div>
+  </div>
+  <p style="margin-top:16px;font-size:14px;color:var(--muted)">Every plan is truly unlimited — no fair-usage policy, no speed cuts after a cap. Pay by M-Pesa, no contract. <a href="/#plans" style="color:var(--teal);font-weight:500">See full plan details →</a></p>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="cta">
+    <div>
+      <h2>Get connected in {name}</h2>
+      <p>WhatsApp us your estate and plot — we confirm availability the same day and book your installation. If we're not on your street yet, your request moves {name} up the build plan.</p>
+    </div>
+    <a class="btn" href={wa}>WhatsApp +254 729 267 328</a>
+  </div>
+  <p class="more" style="margin-top:26px">Also looking in: {others.map((a, i) => <span><a href={`/internet/${a}/`}>{a.charAt(0).toUpperCase() + a.slice(1)}</a>{i < others.length - 1 ? " · " : ""}</span>)}</p>
+</div></section>
+
+<footer><div class="wrap">
+  <b style="color:#B9C7C5">LIGHTSPACE WIRELESS LIMITED</b> &middot; Safari Park Arcade, USIU Road, Roysambu, Nairobi &middot; <a href="mailto:support@lightspacefiber.com">support@lightspacefiber.com</a> &middot; +254 729 267 328 &middot; <a href="/">lightspacefiber.com</a>
+</div></footer>
+</body>
+</html>
